@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 96709e84122f8fc4e8a761d46f1336d9, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -399,3 +399,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086e8000b90048742b7252866bd23a2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPosition: {x: 0, y: 0, z: 0}
+  direction: {x: 1, y: 0, z: 0}
+  velocity: {x: 0, y: 0, z: 0}
+  speed: 5
+  maxSpeed: 5
+  jumpForce: 5
+  gravity: {x: 0, y: -5, z: 0}
+  playerHorizInput: {x: 0, y: 0}
+  playerJumping: 0
