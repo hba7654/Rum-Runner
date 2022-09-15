@@ -18,6 +18,13 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundSpot;
     public LayerMask groundLayer;
 
+    [Header("Double Jump Shoes Collision Check")]
+    [SerializeField] bool hasShoes;
+    public LayerMask shoeLayer;
+    private bool usedDoubleJump;
+
+
+
     private float normalGravity;
 
     private void Awake()
@@ -25,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         normalGravity = rb.gravityScale;
         isFacingRight = true;
+        usedDoubleJump = false;
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -34,15 +42,21 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if(context.performed && isGrounded)
+        if(context.performed)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpDistance);
+            if (isGrounded)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpDistance);
+            }
+            
         }
     }
 
     private void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundSpot.position, 0.1f, groundLayer);
+        hasShoes = Physics2D.OverlapCapsule(transform.position, new Vector2(1,2), CapsuleDirection2D.Vertical, shoeLayer);
+        //Debug.Log( Physics2D.OverlapCircle(transform.position, 0.2f, shoeLayer));
     }
 
     private void FixedUpdate()
