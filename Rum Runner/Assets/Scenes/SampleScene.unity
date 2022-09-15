@@ -673,6 +673,7 @@ MonoBehaviour:
   shoeLayer:
     serializedVersion: 2
     m_Bits: 64
+  doubleJumpShoe: {fileID: 1344588378}
 --- !u!50 &1953414010
 Rigidbody2D:
   serializedVersion: 4

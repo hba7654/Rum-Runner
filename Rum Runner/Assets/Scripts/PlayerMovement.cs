@@ -20,8 +20,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Double Jump Shoes Collision Check")]
     [SerializeField] bool hasShoes;
-    public LayerMask shoeLayer;
     private bool usedDoubleJump;
+    public Collider2D doubleJumpShoe;
 
 
 
@@ -44,19 +44,31 @@ public class PlayerMovement : MonoBehaviour
     {
         if(context.performed)
         {
+            
             if (isGrounded)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpDistance);
             }
+            else if (!isGrounded && hasShoes)
+            {
+                if (!usedDoubleJump)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, jumpDistance);
+                    usedDoubleJump=true;
+                }
+            }
             
         }
+        
     }
 
     private void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundSpot.position, 0.1f, groundLayer);
-        hasShoes = Physics2D.OverlapCapsule(transform.position, new Vector2(1,2), CapsuleDirection2D.Vertical, shoeLayer);
-        //Debug.Log( Physics2D.OverlapCircle(transform.position, 0.2f, shoeLayer));
+        if (isGrounded)
+        {
+            usedDoubleJump=false;
+        }
     }
 
     private void FixedUpdate()
@@ -64,4 +76,13 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(moveVector.x * moveSpeed, rb.velocity.y);
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.layer == LayerMask.NameToLayer("Shoes"))
+        {
+            Debug.Log("collide w Shoes");
+            hasShoes = true;
+            Destroy(other.gameObject);
+        } 
+    }
 }
