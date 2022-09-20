@@ -18,6 +18,13 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundSpot;
     public LayerMask groundLayer;
 
+    [Header("Double Jump Shoes Collision Check")]
+    [SerializeField] bool hasShoes;
+    private bool usedDoubleJump;
+    public Collider2D doubleJumpShoe;
+
+
+
     private float normalGravity;
 
     private void Awake()
@@ -25,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         normalGravity = rb.gravityScale;
         isFacingRight = true;
+        usedDoubleJump = false;
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -34,15 +42,33 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if(context.performed && isGrounded)
+        if(context.performed)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpDistance);
+            
+            if (isGrounded)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpDistance);
+            }
+            else if (!isGrounded && hasShoes)
+            {
+                if (!usedDoubleJump)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, jumpDistance);
+                    usedDoubleJump=true;
+                }
+            }
+            
         }
+        
     }
 
     private void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundSpot.position, 0.1f, groundLayer);
+        if (isGrounded)
+        {
+            usedDoubleJump=false;
+        }
     }
 
     private void FixedUpdate()
@@ -50,4 +76,13 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(moveVector.x * moveSpeed, rb.velocity.y);
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.layer == LayerMask.NameToLayer("Shoes"))
+        {
+            Debug.Log("collide w Shoes");
+            hasShoes = true;
+            Destroy(other.gameObject);
+        } 
+    }
 }
