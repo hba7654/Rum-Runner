@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7955080521154601228}
   - component: {fileID: 7955080521154601229}
   - component: {fileID: 7955080521154601230}
+  - component: {fileID: -3754455961849465867}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -130,6 +131,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  hasShoes: 0
+  doubleJumpShoe: {fileID: 0}
 --- !u!114 &7955080521154601229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,7 +179,19 @@ MonoBehaviour:
     m_ActionId: de4745ad-1fa8-4342-bc1a-67be80f6fec1
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -3754455961849465867}
+        m_TargetAssemblyTypeName: PlayerUtility, Assembly-CSharp
+        m_MethodName: Fire
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b53f2325-622b-4c5b-b7e5-efc06f3939a4
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -256,6 +271,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
+--- !u!114 &-3754455961849465867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7955080521154601216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1225ee251f2eaba4383b7506de92194c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
 --- !u!1 &7955080522847763852
 GameObject:
   m_ObjectHideFlags: 0
