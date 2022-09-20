@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private PlayerManager playerManager;
 
     [Header("Movement Variables")]
     private Rigidbody2D rb;
@@ -18,21 +19,16 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundSpot;
     public LayerMask groundLayer;
 
-    [Header("Double Jump Shoes Collision Check")]
-    [SerializeField] bool hasShoes;
-    private bool usedDoubleJump;
-    public Collider2D doubleJumpShoe;
-
-
 
     private float normalGravity;
 
     private void Awake()
     {
+        playerManager = gameObject.GetComponent<PlayerManager>();
+
         rb = GetComponent<Rigidbody2D>();
         normalGravity = rb.gravityScale;
         isFacingRight = true;
-        usedDoubleJump = false;
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -49,12 +45,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpDistance);
             }
-            else if (!isGrounded && hasShoes)
+            else if (!isGrounded && playerManager.hasShoes)
             {
-                if (!usedDoubleJump)
+                if (!playerManager.usedDoubleJump)
                 {
                     rb.velocity = new Vector2(rb.velocity.x, jumpDistance);
-                    usedDoubleJump=true;
+                    playerManager.usedDoubleJump =true;
                 }
             }
             
@@ -67,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundSpot.position, 0.1f, groundLayer);
         if (isGrounded)
         {
-            usedDoubleJump=false;
+            playerManager.usedDoubleJump =false;
         }
     }
 
@@ -76,13 +72,5 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(moveVector.x * moveSpeed, rb.velocity.y);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Shoes"))
-        {
-            Debug.Log("collide w Shoes");
-            hasShoes = true;
-            Destroy(other.gameObject);
-        } 
-    }
+    
 }
