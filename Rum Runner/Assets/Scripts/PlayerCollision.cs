@@ -28,5 +28,10 @@ public class PlayerCollision : MonoBehaviour
             Debug.Log("HIT SPIKES");
             playerManager.Die();
         }
+        else if (other.tag == "Exit")
+        {
+            Debug.Log("WIN!");
+            playerManager.Die();
+        }
     }
 }

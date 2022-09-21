@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// PlayerManager will contain manage what abilities can currently be used, as well as
@@ -25,6 +26,7 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     public void Die()
     {
-        transform.SetPositionAndRotation(spawnPos, Quaternion.identity);
+        //transform.SetPositionAndRotation(spawnPos, Quaternion.identity);
+        SceneManager.LoadScene("Level 1-1");
     }
 }
