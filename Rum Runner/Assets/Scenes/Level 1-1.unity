@@ -2490,6 +2490,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 701222696259178937, guid: 0a58c9746fbe693469c5faa9ff932824, type: 3}
+      propertyPath: coyoteTime
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 701222696259178938, guid: 0a58c9746fbe693469c5faa9ff932824, type: 3}
       propertyPath: m_CollisionDetection
       value: 1

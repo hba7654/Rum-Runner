@@ -10,8 +10,10 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Variables")]
     private Rigidbody2D rb;
     private Vector2 moveVector;
+    private bool canJump;
     public float jumpDistance;
     public float moveSpeed;
+    [SerializeField] float coyoteTime;
     [SerializeField] bool isFacingRight;
 
     [Header("Ground Check")]
@@ -41,11 +43,11 @@ public class PlayerMovement : MonoBehaviour
         if(context.performed)
         {
             
-            if (isGrounded)
+            if (canJump)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpDistance);
             }
-            else if (!isGrounded && playerManager.hasShoes)
+            else if (!canJump && playerManager.hasShoes)
             {
                 if (!playerManager.usedDoubleJump)
                 {
@@ -63,7 +65,18 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundSpot.position, 0.1f, groundLayer);
         if (isGrounded)
         {
-            playerManager.usedDoubleJump =false;
+            coyoteTime = 0.5f;
+            canJump = true;
+            playerManager.usedDoubleJump = false;
+        }
+        else
+        {
+            coyoteTime -= Time.deltaTime;
+            if (coyoteTime <= 0)
+            {
+                coyoteTime = 0;
+                canJump = false;
+            }
         }
     }
 
