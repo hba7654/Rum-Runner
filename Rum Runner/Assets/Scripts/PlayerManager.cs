@@ -33,10 +33,13 @@ public class PlayerManager : MonoBehaviour
 
     public void Pause()
     {
-        
-        {
-            GameManager.isPaused = !GameManager.isPaused;
-            Debug.Log("PAUSED");
-        }
+        GameManager.isPaused = !GameManager.isPaused;
+        Debug.Log("PAUSED");
+    }
+
+    public void Win()
+    {
+        Die();
+        Pause();
     }
 }

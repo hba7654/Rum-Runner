@@ -32,7 +32,7 @@ public class PlayerCollision : MonoBehaviour
         else if (other.tag == "Exit")
         {
             Debug.Log("WIN!");
-            GameManager.isPaused = true;
+            playerManager.Win();
         }
     }
 }
