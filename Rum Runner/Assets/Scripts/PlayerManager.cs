@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -28,5 +29,17 @@ public class PlayerManager : MonoBehaviour
     {
         //transform.SetPositionAndRotation(spawnPos, Quaternion.identity);
         SceneManager.LoadScene("Level 1-1");
+    }
+
+    public void Pause()
+    {
+        GameManager.isPaused = !GameManager.isPaused;
+        Debug.Log("PAUSED");
+    }
+
+    public void Win()
+    {
+        Die();
+        Pause();
     }
 }

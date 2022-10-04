@@ -22,6 +22,7 @@ public class PlayerCollision : MonoBehaviour
         {
             Debug.Log("Collectable picked up!");
             Destroy(other.gameObject);
+            GameManager.rumBottles++;
         }
         else if(other.tag == "Spikes")
         {
@@ -31,7 +32,7 @@ public class PlayerCollision : MonoBehaviour
         else if (other.tag == "Exit")
         {
             Debug.Log("WIN!");
-            playerManager.Die();
+            playerManager.Win();
         }
     }
 }
