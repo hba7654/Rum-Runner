@@ -87,6 +87,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!GameManager.isPaused)
             rb.velocity = new Vector2(moveVector.x * moveSpeed, rb.velocity.y);
+        else
+            rb.velocity = new Vector2(0, 0.41f);
     }
 
     
