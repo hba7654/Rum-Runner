@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if(context.performed && !GameManager.isPaused)
         {
             
             if (canJump)
@@ -62,27 +62,31 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(groundSpot.position, 0.1f, groundLayer);
-        if (isGrounded)
+        if (!GameManager.isPaused)
         {
-            coyoteTime = 0.5f;
-            canJump = true;
-            playerManager.usedDoubleJump = false;
-        }
-        else
-        {
-            coyoteTime -= Time.deltaTime;
-            if (coyoteTime <= 0)
+            isGrounded = Physics2D.OverlapCircle(groundSpot.position, 0.1f, groundLayer);
+            if (isGrounded)
             {
-                coyoteTime = 0;
-                canJump = false;
+                coyoteTime = 0.5f;
+                canJump = true;
+                playerManager.usedDoubleJump = false;
+            }
+            else
+            {
+                coyoteTime -= Time.deltaTime;
+                if (coyoteTime <= 0)
+                {
+                    coyoteTime = 0;
+                    canJump = false;
+                }
             }
         }
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveVector.x * moveSpeed, rb.velocity.y);
+        if (!GameManager.isPaused)
+            rb.velocity = new Vector2(moveVector.x * moveSpeed, rb.velocity.y);
     }
 
     
