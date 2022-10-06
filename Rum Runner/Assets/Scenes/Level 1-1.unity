@@ -3152,8 +3152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exit: {fileID: 712439640}
-  time: {fileID: 845424589}
-  score: {fileID: 225167217}
+  timeText: {fileID: 845424589}
+  scoreText: {fileID: 225167217}
   levelScore: 0
 --- !u!4 &1192703168
 Transform:

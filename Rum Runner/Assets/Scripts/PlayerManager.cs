@@ -23,23 +23,4 @@ public class PlayerManager : MonoBehaviour
     {
         usedDoubleJump = false;
     }
-
-    // Update is called once per frame
-    public void Die()
-    {
-        //transform.SetPositionAndRotation(spawnPos, Quaternion.identity);
-        SceneManager.LoadScene("Level 1-1");
-    }
-
-    public void Pause()
-    {
-        GameManager.isPaused = !GameManager.isPaused;
-        Debug.Log("PAUSED");
-    }
-
-    public void Win()
-    {
-        Die();
-        Pause();
-    }
 }
