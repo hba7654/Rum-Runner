@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
 
     private float timer;
+    [SerializeField] GameObject exit;
+    [SerializeField] Text time;
+    [SerializeField] Text score;
 
     public int levelScore;
     public static int rumBottles = 0;
@@ -14,6 +18,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         //isPaused = false;
+        exit.SetActive(false);
         timer = 0;
         rumBottles = levelScore;
     }
@@ -28,8 +33,13 @@ public class GameManager : MonoBehaviour
         if (!isPaused)
         {
             timer += Time.deltaTime;
-            Debug.Log("time: " + timer.ToString("F2"));
-            Debug.Log("score: " + rumBottles.ToString());
+            time.text = ("Time: " + timer.ToString("F2"));
+            score.text = ("Bottles Collected: " + rumBottles.ToString());
+
+            if(rumBottles >= 3)
+            {
+                exit.SetActive(true);
+            }
         }
     }
 }
