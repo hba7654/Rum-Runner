@@ -29,13 +29,16 @@ public class PlayerUtility : MonoBehaviour
         Vector2 bulletSpawnPosition = new Vector2(transform.position.x + 0.5f, transform.position.y);
         bulletClone = Instantiate(bullet, bulletSpawnPosition, transform.rotation);
         bulletScript = bulletClone.GetComponent<Bullet>();
-        //mousePosition = GetMousePosition();
-        bulletScript.InitialMove(bulletSpeed, new Vector2(1f,0f));
+        mousePosition = GetMousePosition();
+        bulletScript.InitialMove(bulletSpeed, mousePosition.normalized);
     }
 
-    public void GetMousePosition(InputAction.CallbackContext context)
+    public Vector2 GetMousePosition()
     {
-        mousePosition = context.ReadValue<Vector2>();
+        Vector3 playerPos = transform.position;
+        Vector3 mousePos = Mouse.current.position.ReadValue();
+        Vector3 Worldpos = Camera.main.ScreenToWorldPoint(mousePos);
+        return new Vector2(Worldpos.x- playerPos.x,Worldpos.y - playerPos.y);
     }
 
 
