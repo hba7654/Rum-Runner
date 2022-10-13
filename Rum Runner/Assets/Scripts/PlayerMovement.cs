@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpDistance;
     public float moveSpeed;
     [SerializeField] float coyoteTime;
+    private float coyoteTimeLeft;
     [SerializeField] bool isFacingRight;
 
     [Header("Ground Check")]
@@ -67,16 +68,16 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = Physics2D.OverlapCircle(groundSpot.position, 0.1f, groundLayer);
             if (isGrounded)
             {
-                coyoteTime = 0.5f;
+                coyoteTimeLeft = coyoteTime;
                 canJump = true;
                 playerManager.usedDoubleJump = false;
             }
             else
             {
-                coyoteTime -= Time.deltaTime;
-                if (coyoteTime <= 0)
+                coyoteTimeLeft -= Time.deltaTime;
+                if (coyoteTimeLeft <= 0)
                 {
-                    coyoteTime = 0;
+                    coyoteTimeLeft = 0;
                     canJump = false;
                 }
             }
@@ -87,6 +88,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!GameManager.isPaused)
             rb.velocity = new Vector2(moveVector.x * moveSpeed, rb.velocity.y);
+        else
+            rb.velocity = new Vector2(0, 0.41f);
     }
 
     

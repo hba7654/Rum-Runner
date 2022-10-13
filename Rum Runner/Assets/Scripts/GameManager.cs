@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static float finalTime;
+    public static int finalRumBottles;
 
-    private float timer;
+    private static float timer;
+    [SerializeField] GameObject exit;
+    [SerializeField] Text timeText;
+    [SerializeField] Text scoreText;
 
     public int levelScore;
     public static int rumBottles = 0;
@@ -14,6 +21,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         //isPaused = false;
+        exit.SetActive(false);
         timer = 0;
         rumBottles = levelScore;
     }
@@ -28,8 +36,32 @@ public class GameManager : MonoBehaviour
         if (!isPaused)
         {
             timer += Time.deltaTime;
-            Debug.Log("time: " + timer.ToString("F2"));
-            Debug.Log("score: " + rumBottles.ToString());
+            timeText.text = ("Time: " + timer.ToString("F2") + "s");
+            scoreText.text = ("Bottles Collected: " + rumBottles.ToString());
+
+            if(rumBottles >= 3)
+            {
+                exit.SetActive(true);
+            }
         }
+    }
+
+
+    public static void Die()
+    {
+        SceneManager.LoadScene("Level 1-1");
+    }
+
+    public static void Pause()
+    {
+        isPaused = !isPaused;
+        Debug.Log("PAUSED");
+    }
+
+    public static void Win()
+    {
+        finalTime = timer;
+        finalRumBottles = rumBottles;
+        SceneManager.LoadScene("WinScreen");
     }
 }

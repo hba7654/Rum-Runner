@@ -27,12 +27,12 @@ public class PlayerCollision : MonoBehaviour
         else if(other.tag == "Spikes")
         {
             Debug.Log("HIT SPIKES");
-            playerManager.Die();
+            GameManager.Die();
         }
         else if (other.tag == "Exit")
         {
             Debug.Log("WIN!");
-            playerManager.Win();
+            GameManager.Win();
         }
     }
 }
