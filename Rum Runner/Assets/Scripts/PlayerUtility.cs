@@ -23,6 +23,12 @@ public class PlayerUtility : MonoBehaviour
        
     }
 
+    private void Update()
+    {
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+            Fire();
+    }
+
     public void Fire()
     {
         GameObject bulletClone;
