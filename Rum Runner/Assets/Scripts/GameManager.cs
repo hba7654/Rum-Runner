@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        isPaused = true;
+        isPaused = false;
         exit.SetActive(false);
         timer = 0;
         rumBottles = levelScore;
