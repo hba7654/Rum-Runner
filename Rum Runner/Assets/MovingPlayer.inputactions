@@ -35,11 +35,20 @@
                 {
                     "name": "Pause",
                     "type": "Button",
-                    "id": "a8d27c83-fef4-471d-b444-8374818223d0",
+                    "id": "0eac5160-cb27-426e-baaa-876b71e52c8a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Restart",
+                    "type": "Button",
+                    "id": "24079a87-d402-4b7d-8353-3703b33d609c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -221,7 +230,7 @@
                 },
                 {
                     "name": "",
-                    "id": "3f138355-7f74-477c-a64e-06022d28c176",
+                    "id": "92631cc9-8b82-42e0-9817-6d1403bd4d33",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
@@ -232,12 +241,23 @@
                 },
                 {
                     "name": "",
-                    "id": "8b7a5022-af11-4aaa-9426-4c7c052e4409",
+                    "id": "ee489ef4-7b0c-40bb-8ea5-4e482d57f6db",
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e2fde7ae-8cd1-4c7f-9b3a-2e3dca803d51",
+                    "path": "<Keyboard>/r",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Restart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

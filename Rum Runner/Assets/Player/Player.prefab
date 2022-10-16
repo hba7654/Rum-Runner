@@ -125,7 +125,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpDistance: 10
+  jumpingGravity: 2.6
+  fallingGravity: 4
   moveSpeed: 8
+  coyoteTime: 0.15
   isFacingRight: 0
   isGrounded: 0
   groundSpot: {fileID: 4228221075829623902}
@@ -177,22 +180,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: de4745ad-1fa8-4342-bc1a-67be80f6fec1
     m_ActionName: Player/Look[/Mouse/delta]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -3754455961849465867}
-        m_TargetAssemblyTypeName: PlayerUtility, Assembly-CSharp
-        m_MethodName: Fire
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: b53f2325-622b-4c5b-b7e5-efc06f3939a4
-    m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 235a237d-e54d-4f51-99d3-730fa69ece90
@@ -249,6 +236,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 45922b60-a442-4670-80f6-14af56e278ed
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4681bc3a-bc33-44f8-9b12-8896de9cbc93
+    m_ActionName: UI/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c83e3896-29e1-4e74-b19d-9239d0dc24fa
+    m_ActionName: UI/Restart[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

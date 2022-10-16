@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveVector;
     private bool canJump;
     public float jumpDistance;
+    public float jumpingGravity;
+    public float fallingGravity;
     public float moveSpeed;
     [SerializeField] float coyoteTime;
     private float coyoteTimeLeft;
@@ -46,17 +48,23 @@ public class PlayerMovement : MonoBehaviour
             
             if (canJump)
             {
+                rb.gravityScale = jumpingGravity;
                 rb.velocity = new Vector2(rb.velocity.x, jumpDistance);
             }
             else if (!canJump && playerManager.hasShoes)
             {
                 if (!playerManager.usedDoubleJump)
                 {
+                    rb.gravityScale = jumpingGravity;
                     rb.velocity = new Vector2(rb.velocity.x, jumpDistance);
                     playerManager.usedDoubleJump =true;
                 }
             }
             
+        }
+        else if(context.canceled && !isGrounded)
+        {
+            rb.gravityScale = fallingGravity;
         }
         
     }
@@ -82,6 +90,16 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+
+
+        if(rb.velocity.y <= 0)
+        {
+            rb.gravityScale = fallingGravity;
+        }
+        else
+        {
+            rb.gravityScale = jumpingGravity;
+        }
     }
 
     private void FixedUpdate()
@@ -89,7 +107,10 @@ public class PlayerMovement : MonoBehaviour
         if (!GameManager.isPaused)
             rb.velocity = new Vector2(moveVector.x * moveSpeed, rb.velocity.y);
         else
-            rb.velocity = new Vector2(0, 0.41f);
+        {
+            rb.velocity = Vector2.zero;
+            rb.gravityScale = 0;
+        }
     }
 
     
