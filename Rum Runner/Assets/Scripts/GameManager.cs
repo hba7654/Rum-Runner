@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static float finalTime;
+    public static float fastestTime;
     public static int finalRumBottles;
 
     private static float timer;
