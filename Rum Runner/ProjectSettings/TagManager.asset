@@ -7,6 +7,7 @@ TagManager:
   - Collectable
   - Spikes
   - Exit
+  - Trigger
   layers:
   - Default
   - TransparentFX
