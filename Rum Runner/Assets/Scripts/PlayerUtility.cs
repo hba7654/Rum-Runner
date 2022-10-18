@@ -17,16 +17,32 @@ public class PlayerUtility : MonoBehaviour
     [Header("Shooting Variables")]
     private float bulletSpeed;
 
+    [Header("Grappling Variables")]
+    public Camera mainCamera;
+    public LineRenderer lineRenderer;
+    public DistanceJoint2D distJoint;
+
     public void Awake()
     {
         bulletSpeed = 5f;
-       
+        distJoint.enabled = false;
+        lineRenderer.enabled = false;
+
+
     }
 
     private void Update()
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
             Fire();
+        if (Mouse.current.rightButton.wasPressedThisFrame)
+        {
+            Grapple();
+        }
+        else
+        {
+            distJoint.enabled = true;
+        }
     }
 
     public void Fire()
@@ -37,6 +53,23 @@ public class PlayerUtility : MonoBehaviour
         bulletScript = bulletClone.GetComponent<Bullet>();
         mousePosition = GetMousePosition();
         bulletScript.InitialMove(bulletSpeed, mousePosition.normalized);
+    }
+
+    public void Grapple()
+    {
+        mousePosition = GetMousePosition();
+
+        Debug.Log(mousePosition);
+        lineRenderer.SetPosition(0, mousePosition);
+        lineRenderer.SetPosition(1, transform.position);
+        distJoint.connectedAnchor = mousePosition;
+        distJoint.enabled = true;
+        lineRenderer.enabled = true;
+
+        if (distJoint.enabled)
+        {
+            lineRenderer.SetPosition(1, transform.position);
+        }
     }
 
     public Vector2 GetMousePosition()
