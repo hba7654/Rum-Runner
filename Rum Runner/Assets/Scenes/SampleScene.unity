@@ -810,17 +810,12 @@ DistanceJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 1
-  m_ConnectedRigidBody: {fileID: 2036495753}
+  m_ConnectedRigidBody: {fileID: 0}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 0.005
+  m_Distance: 2.8609807
   m_MaxDistanceOnly: 0
---- !u!50 &2036495753 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 701222696259178938, guid: 0a58c9746fbe693469c5faa9ff932824, type: 3}
-  m_PrefabInstance: {fileID: 2036495734}
-  m_PrefabAsset: {fileID: 0}
