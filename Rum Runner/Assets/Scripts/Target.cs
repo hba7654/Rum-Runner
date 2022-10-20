@@ -8,18 +8,26 @@ public class Target : MonoBehaviour
 {
     private enum TargetEffect
     {
-        ChangeTilemap,
+        ChangeTilemapVToH,
+        ChangeTilemapHToH,
+        ChangeTilemapHToV,
         UnlockBottle
     }
 
     [SerializeField] private TargetEffect effect;
 
     [Header("Change Tilemap")]
-    [SerializeField] private Vector2 tilemapStartPos;
-    [SerializeField] private Vector2 oldTilemapEndPos;
-    [SerializeField] private Vector2 newTilemapEndPos;
+    [SerializeField] private Tilemap tilemap;
     [SerializeField] private Tile tile;
+    [SerializeField] private Vector2Int tilemapStartPos;
 
+    [Header("Vertical To Horizontal / Horizontal to Vertical")]
+    [SerializeField] private int height;
+    [SerializeField] private int length;
+
+    [Header("Horizontal To Horizontal")]
+    [SerializeField] private int lengthToBeDeleted;
+    [SerializeField] private int lengthToBeAdded;
 
     [Header("Unlock Bottle")]
     [SerializeField] private GameObject bottle;
@@ -34,9 +42,12 @@ public class Target : MonoBehaviour
     {
         if(collision.tag == "Bullet")
         {
+            Debug.Log("Target HIT!");
             switch (effect)
             {
-                case TargetEffect.ChangeTilemap:
+                case TargetEffect.ChangeTilemapVToH:
+                case TargetEffect.ChangeTilemapHToH:
+                case TargetEffect.ChangeTilemapHToV:
                     ChangeTilemap();
                     break;
 
@@ -49,7 +60,17 @@ public class Target : MonoBehaviour
 
     private void ChangeTilemap()
     {
-
+        Debug.Log("changing tiles");
+        for (int i = 0; i > lengthToBeDeleted; i--)
+        {
+            Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
+            tilemap.SetTile(addTilePos, null);
+        }
+        for (int i = 0; i < lengthToBeAdded; i++)
+        {
+            Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
+            tilemap.SetTile(addTilePos, tile);
+        }
     }
 
     private void UnlockBottle()
