@@ -3209,12 +3209,16 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 178799820014150431, guid: 0c1a4581d8112034e8a2f81c5ff18cda, type: 3}
+      propertyPath: lengthToBeDeleted
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 178799820014150431, guid: 0c1a4581d8112034e8a2f81c5ff18cda, type: 3}
       propertyPath: tilemapStartPos.x
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 178799820014150431, guid: 0c1a4581d8112034e8a2f81c5ff18cda, type: 3}
       propertyPath: tilemapStartPos.y
-      value: -3
+      value: -5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c1a4581d8112034e8a2f81c5ff18cda, type: 3}
