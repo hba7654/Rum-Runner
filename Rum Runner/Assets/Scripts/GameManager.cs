@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public static int rumBottles = 0;
     public static bool isPaused;
     // Start is called before the first frame update
+    public GameObject pauseScreen;
+
     void Awake()
     {
         isPaused = false;
@@ -45,6 +47,8 @@ public class GameManager : MonoBehaviour
                 exit.SetActive(true);
             }
         }
+        pauseScreen.SetActive(isPaused);
+
     }
 
 

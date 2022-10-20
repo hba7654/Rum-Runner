@@ -14,6 +14,6 @@ public class TitleSceneManager : MonoBehaviour
 
     public void Instructions()
     {
-        SceneManager.LoadScene("TitleScreen");
+        SceneManager.LoadScene("InstructionsScreen");
     }
 }

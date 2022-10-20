@@ -6,11 +6,12 @@ using UnityEngine.UI;
 
 public class PauseSceneManager : MonoBehaviour
 {
+    public GameObject gameManager;
 
     public void Resume()
     {
-        //SceneManager.LoadScene("Level 1-1", LoadSceneMode.Additive);
-        SceneManager.LoadScene("Level 1-1");
+        GameManager.isPaused = false;
+        Debug.Log("Resume");
     }
 
     public void Restart()
