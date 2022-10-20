@@ -49,7 +49,8 @@ public class GameManager : MonoBehaviour
 
     public static void Die()
     {
-        SceneManager.LoadScene("Level 1-1");
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public static void Pause()
