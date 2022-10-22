@@ -16,4 +16,9 @@ public class TitleSceneManager : MonoBehaviour
     {
         SceneManager.LoadScene("InstructionsScreen");
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
