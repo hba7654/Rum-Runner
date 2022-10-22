@@ -8,11 +8,14 @@ public class GameManager : MonoBehaviour
 {
     public static float finalTime;
     public static int finalRumBottles;
+    public static float fastestTime;
 
     private static float timer;
     [SerializeField] GameObject exit;
     [SerializeField] Text timeText;
     [SerializeField] Text scoreText;
+    [SerializeField] Text fastestTimeText;
+
 
     public int levelScore;
     public static int rumBottles = 0;
@@ -38,6 +41,12 @@ public class GameManager : MonoBehaviour
             timer += Time.deltaTime;
             timeText.text = ("Time: " + timer.ToString("F2") + "s");
             scoreText.text = ("Bottles Collected: " + rumBottles.ToString());
+
+            if(timer < fastestTime)
+            {
+                fastestTime = timer;
+                Debug.Log(fastestTime);
+            }
 
             if(rumBottles >= 3)
             {
