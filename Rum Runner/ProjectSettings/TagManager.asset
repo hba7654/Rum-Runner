@@ -8,6 +8,7 @@ TagManager:
   - Spikes
   - Exit
   - Trigger
+  - Bullet
   layers:
   - Default
   - TransparentFX

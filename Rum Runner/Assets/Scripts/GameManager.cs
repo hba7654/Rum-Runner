@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        isPaused = false;
+        isPaused = true;
         exit.SetActive(false);
         timer = 0;
         rumBottles = levelScore;
