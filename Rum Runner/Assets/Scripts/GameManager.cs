@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static float finalTime;
     public static int finalRumBottles;
+    public static float fastestTime;
 
     private static float timer;
     [SerializeField] GameObject exit;
@@ -39,7 +40,7 @@ public class GameManager : MonoBehaviour
             timeText.text = ("Time: " + timer.ToString("F2") + "s");
             scoreText.text = ("Bottles Collected: " + rumBottles.ToString());
 
-            if(rumBottles >= 3)
+            if (rumBottles >= 3)
             {
                 exit.SetActive(true);
             }
@@ -62,6 +63,14 @@ public class GameManager : MonoBehaviour
     {
         finalTime = timer;
         finalRumBottles = rumBottles;
+
+        if (finalTime <= fastestTime)
+        {
+            fastestTime = finalTime;
+        }
+
         SceneManager.LoadScene("WinScreen");
+
+
     }
 }
