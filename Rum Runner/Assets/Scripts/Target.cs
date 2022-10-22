@@ -8,10 +8,10 @@ public class Target : MonoBehaviour
 {
     private enum TargetEffect
     {
-        ChangeTilemapVToH,
-        ChangeTilemapHToH,
-        ChangeTilemapHToV,
-        UnlockBottle
+        ChangeTilemapVToH, //Deleting vertical tiles and adding horizontal ones (like dropping a bridge)
+        ChangeTilemapHToH, //Deleting horizontal tiles and adding horizontal ones (like moving a horizontal platform)
+        ChangeTilemapHToV, //Deleting horizontal tiles and adding vertical ones (like raising a bridge)
+        UnlockBottle //A bottle will activate somewhere in the level 
     }
 
     [SerializeField] private TargetEffect effect;
@@ -21,14 +21,17 @@ public class Target : MonoBehaviour
     [SerializeField] private Tile tile;
     [SerializeField] private Vector2Int tilemapStartPos;
 
+    //Only use these when dealing with vertical tiles
     [Header("Vertical To Horizontal / Horizontal to Vertical")]
     [SerializeField] private int height;
     [SerializeField] private int length;
 
+    //Only use these when purely dealing with horizontal tiles
     [Header("Horizontal To Horizontal")]
     [SerializeField] private int lengthToBeDeleted;
     [SerializeField] private int lengthToBeAdded;
 
+    //Only use this when the target is unlockinga bottle
     [Header("Unlock Bottle")]
     [SerializeField] private GameObject bottle;
 
@@ -48,9 +51,11 @@ public class Target : MonoBehaviour
                 case TargetEffect.ChangeTilemapVToH:
                     ChangeTilemapVtoH();
                     break;
+                    
                 case TargetEffect.ChangeTilemapHToV:
                     ChangeTilemapHtoV();
                     break;
+
                 case TargetEffect.ChangeTilemapHToH:
                     ChangeTilemapHtoH();
                     break;
