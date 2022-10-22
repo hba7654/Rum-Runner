@@ -35,7 +35,7 @@ public class Target : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        bottle.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -46,35 +46,146 @@ public class Target : MonoBehaviour
             switch (effect)
             {
                 case TargetEffect.ChangeTilemapVToH:
-                case TargetEffect.ChangeTilemapHToH:
+                    ChangeTilemapVtoH();
+                    break;
                 case TargetEffect.ChangeTilemapHToV:
-                    ChangeTilemap();
+                    ChangeTilemapHtoV();
+                    break;
+                case TargetEffect.ChangeTilemapHToH:
+                    ChangeTilemapHtoH();
                     break;
 
                 case TargetEffect.UnlockBottle:
                     UnlockBottle();
                     break;
             }
+
+            Destroy(collision.gameObject);
         }
     }
 
-    private void ChangeTilemap()
+    private void ChangeTilemapHtoV()
     {
-        Debug.Log("changing tiles");
-        for (int i = 0; i > lengthToBeDeleted; i--)
+        Debug.Log("changing tiles h to v");
+        //Delete horizontal tiles
+        if (length < 0)
         {
-            Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
-            tilemap.SetTile(addTilePos, null);
+            for (int i = 0; i > length; i--)
+            {
+                Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
+                tilemap.SetTile(addTilePos, null);
+            }
         }
-        for (int i = 0; i < lengthToBeAdded; i++)
+        else
         {
-            Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
-            tilemap.SetTile(addTilePos, tile);
+            for (int i = 0; i < length; i++)
+            {
+                Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
+                tilemap.SetTile(addTilePos, null);
+            }
+        }
+
+        //Add vertical tiles
+        if (height < 0)
+        {
+            for (int i = 0; i > height; i--)
+            {
+                Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x, tilemapStartPos.y + i, 0);
+                tilemap.SetTile(addTilePos, tile);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < height; i++)
+            {
+                Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x, tilemapStartPos.y + i, 0);
+                tilemap.SetTile(addTilePos, tile);
+            }
+        }
+    }
+
+    private void ChangeTilemapVtoH()
+    {
+        Debug.Log("changing tiles v to h");
+        //Delete vertical tiles
+        if (height < 0)
+        {
+            for (int i = 0; i > height; i--)
+            {
+                Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x, tilemapStartPos.y + i, 0);
+                tilemap.SetTile(addTilePos, null);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < height; i++)
+            {
+                Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x, tilemapStartPos.y + i, 0);
+                tilemap.SetTile(addTilePos, null);
+            }
+        }
+
+        //Add horizontal tiles
+        if (length < 0)
+        {
+            for (int i = 0; i > length; i--)
+            {
+                Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
+                tilemap.SetTile(addTilePos, tile);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < length; i++)
+            {
+                Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
+                tilemap.SetTile(addTilePos, tile);
+            }
+        }
+    }
+
+    private void ChangeTilemapHtoH()
+    {
+        Debug.Log("changing tiles h to h");
+        //Delete first set of tiles
+        if (lengthToBeDeleted < 0)
+        {
+            for (int i = 0; i > lengthToBeDeleted; i--)
+            {
+                Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
+                tilemap.SetTile(addTilePos, null);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < lengthToBeDeleted; i++)
+            {
+                Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
+                tilemap.SetTile(addTilePos, null);
+            }
+        }
+
+        //Add new set of tiles
+        if (lengthToBeAdded < 0)
+        {
+            for (int i = 0; i > lengthToBeAdded; i--)
+            {
+                Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
+                tilemap.SetTile(addTilePos, tile);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < lengthToBeAdded; i++)
+            {
+                Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
+                tilemap.SetTile(addTilePos, tile);
+            }
         }
     }
 
     private void UnlockBottle()
     {
-        throw new NotImplementedException();
+        bottle.SetActive(true);
     }
 }
