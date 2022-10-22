@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject exit;
     [SerializeField] Text timeText;
     [SerializeField] Text scoreText;
+    [SerializeField] Text fastestTimeText;
+
 
     public int levelScore;
     public static int rumBottles = 0;
@@ -40,7 +42,17 @@ public class GameManager : MonoBehaviour
             timeText.text = ("Time: " + timer.ToString("F2") + "s");
             scoreText.text = ("Bottles Collected: " + rumBottles.ToString());
 
+<<<<<<< HEAD
             if (rumBottles >= 3)
+=======
+            if(timer < fastestTime)
+            {
+                fastestTime = timer;
+                Debug.Log(fastestTime);
+            }
+
+            if(rumBottles >= 3)
+>>>>>>> 851fb780883bdf2af02769a763859dae4ef9f053
             {
                 exit.SetActive(true);
             }
