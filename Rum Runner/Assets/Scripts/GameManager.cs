@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static float finalTime;
+    public static float fastestTime;
     public static int finalRumBottles;
     public static float fastestTime;
 
@@ -21,6 +22,8 @@ public class GameManager : MonoBehaviour
     public static int rumBottles = 0;
     public static bool isPaused;
     // Start is called before the first frame update
+    public GameObject pauseScreen;
+
     void Awake()
     {
         isPaused = true;
@@ -47,6 +50,8 @@ public class GameManager : MonoBehaviour
                 exit.SetActive(true);
             }
         }
+        pauseScreen.SetActive(isPaused);
+
     }
 
 
