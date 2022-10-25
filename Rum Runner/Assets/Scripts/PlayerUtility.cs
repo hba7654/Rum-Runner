@@ -53,8 +53,8 @@ public class PlayerUtility : MonoBehaviour
         Vector2 bulletSpawnPosition = new Vector2(transform.position.x + 0.5f, transform.position.y);
         bulletClone = Instantiate(bullet, bulletSpawnPosition, transform.rotation);
         bulletScript = bulletClone.GetComponent<Bullet>();
-        mousePosition = GetMousePosition();
-        bulletScript.InitialMove(bulletSpeed, mousePosition.normalized);
+        mousePosition = GetMouseVector();
+        bulletScript.InitialMove(bulletSpeed, mousePosition);
     }
 
     public void Grapple()
@@ -74,12 +74,20 @@ public class PlayerUtility : MonoBehaviour
         //}
     }
 
+    public Vector2 GetMouseVector()
+    {
+        Vector3 playerPos = transform.position;
+        Vector3 mousePos = Mouse.current.position.ReadValue();
+        Vector3 Worldpos = Camera.main.ScreenToWorldPoint(mousePos);
+        return new Vector2(Worldpos.x - playerPos.x, Worldpos.y - playerPos.y).normalized;
+    }
+
     public Vector2 GetMousePosition()
     {
         Vector3 playerPos = transform.position;
         Vector3 mousePos = Mouse.current.position.ReadValue();
         Vector3 Worldpos = Camera.main.ScreenToWorldPoint(mousePos);
-        return new Vector2(Worldpos.x- playerPos.x,Worldpos.y - playerPos.y);
+        return new Vector2(Worldpos.x, Worldpos.y);
     }
 
 
