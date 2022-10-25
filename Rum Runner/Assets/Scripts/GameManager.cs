@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     public GameObject pauseScreen;
 
+
+
+
     void Awake()
     {
         isPaused = true;
@@ -33,16 +36,24 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         levelScore = 0;
+        PlayerPrefs.GetFloat("fastestTime", 100.0f);
+        PlayerPrefs.Save();
+        Debug.Log(PlayerPrefs.GetFloat("fastestTime"));
+
+
+        fastestTimeText.text = ("Fastest Time: " + PlayerPrefs.GetFloat("fastestTime").ToString("F2") + "s");
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(PlayerPrefs.GetFloat("fastestTime"));
+        Debug.Log(PlayerPrefs.HasKey("fastestTime"));
         if (!isPaused)
         {
             timer += Time.deltaTime;
             timeText.text = ("Time: " + timer.ToString("F2") + "s");
-            scoreText.text = ("Bottles Collected: " + rumBottles.ToString());
+            scoreText.text = ("# Rum Bottles: " + rumBottles.ToString());
 
             if(rumBottles >= 3)
             {
@@ -68,11 +79,15 @@ public class GameManager : MonoBehaviour
     public static void Win()
     {
         finalTime = timer;
+        Debug.Log(finalTime);
         finalRumBottles = rumBottles;
 
-        if (finalTime <= fastestTime)
+
+        if (finalTime <= PlayerPrefs.GetFloat("fastestTime") )
         {
-            fastestTime = finalTime;
+            PlayerPrefs.SetFloat("fastestTime", fastestTime);
+            PlayerPrefs.Save();
+            //fastestTime = PlayerPrefs.GetFloat("fastestTime");
         }
 
         SceneManager.LoadScene("WinScreen");

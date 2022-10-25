@@ -320,7 +320,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Bottles Collected: 0'
+  m_Text: '# Rum Bottles: 0'
 --- !u!222 &187989026
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2505,7 +2505,7 @@ RectTransform:
   - {fileID: 187989024}
   - {fileID: 1120153874}
   m_Father: {fileID: 1235717488}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.05, y: 0.9}
   m_AnchorMax: {x: 0.95, y: 1}
@@ -3927,6 +3927,7 @@ MonoBehaviour:
   exit: {fileID: 712439640}
   timeText: {fileID: 1062360292}
   scoreText: {fileID: 187989025}
+  fastestTimeText: {fileID: 1120153875}
   levelScore: 0
   pauseScreen: {fileID: 268591090}
 --- !u!4 &1192703168
@@ -4036,6 +4037,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 845424588}
   - {fileID: 389882847}
   m_Father: {fileID: 0}
   m_RootOrder: 12
