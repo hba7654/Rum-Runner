@@ -12,6 +12,7 @@ public class PlayerUtility : MonoBehaviour
 
     [Header("General Variables")]
     private Vector2 mousePosition;
+    private Vector2 mouseDirVector;
 
 
     [Header("Shooting Variables")]
@@ -19,12 +20,15 @@ public class PlayerUtility : MonoBehaviour
 
     [Header("Grappling Variables")]
     public LineRenderer lineRenderer;
+    public float grappleLength;
+    private PlayerMovement pMoveScript;
     //public DistanceJoint2D distJoint;
 
     public void Awake()
     {
         bulletSpeed = 5f;
         lineRenderer = GetComponent<LineRenderer>();
+        pMoveScript = GetComponent<PlayerMovement>();
         //distJoint = GetComponent<DistanceJoint2D>();
 
         lineRenderer.enabled = false;
@@ -39,7 +43,12 @@ public class PlayerUtility : MonoBehaviour
             Fire();
         if (Mouse.current.rightButton.wasPressedThisFrame)
         {
+            pMoveScript.isGrappling = true;
             Grapple();
+        }
+        else if(Mouse.current.rightButton.wasReleasedThisFrame)
+        {
+            pMoveScript.isGrappling = false;
         }
         //else
         //{
@@ -53,13 +62,14 @@ public class PlayerUtility : MonoBehaviour
         Vector2 bulletSpawnPosition = new Vector2(transform.position.x + 0.5f, transform.position.y);
         bulletClone = Instantiate(bullet, bulletSpawnPosition, transform.rotation);
         bulletScript = bulletClone.GetComponent<Bullet>();
-        mousePosition = GetMouseVector();
-        bulletScript.InitialMove(bulletSpeed, mousePosition);
+        mouseDirVector = GetMouseVector();
+        bulletScript.InitialMove(bulletSpeed, mouseDirVector);
     }
 
     public void Grapple()
     {
         mousePosition = GetMousePosition();
+        mouseDirVector = GetMouseVector();
 
         Debug.Log(mousePosition);
         lineRenderer.SetPosition(0, mousePosition);
@@ -72,6 +82,17 @@ public class PlayerUtility : MonoBehaviour
         //{
         //    lineRenderer.SetPosition(1, transform.position);
         //}
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, mouseDirVector, grappleLength, pMoveScript.groundLayer);
+        Debug.Log(hit.collider.gameObject);
+        if(hit.collider!= null)
+        {
+            pMoveScript.moveVector = mouseDirVector;
+            //Vector2 vel =  pMoveScript.moveSpeed * mouseDirVector;
+            //Debug.Log(vel);
+            //pMoveScript.rb.velocity = vel;
+            //Debug.Log(pMoveScript.rb.velocity.x);
+        }
     }
 
     public Vector2 GetMouseVector()
