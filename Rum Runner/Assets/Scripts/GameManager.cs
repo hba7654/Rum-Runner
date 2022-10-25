@@ -8,11 +8,14 @@ public class GameManager : MonoBehaviour
 {
     public static float finalTime;
     public static int finalRumBottles;
+    public static float fastestTime;
 
     private static float timer;
     [SerializeField] GameObject exit;
     [SerializeField] Text timeText;
     [SerializeField] Text scoreText;
+    [SerializeField] Text fastestTimeText;
+
 
     public int levelScore;
     public static int rumBottles = 0;
@@ -62,6 +65,14 @@ public class GameManager : MonoBehaviour
     {
         finalTime = timer;
         finalRumBottles = rumBottles;
+
+        if (finalTime <= fastestTime)
+        {
+            fastestTime = finalTime;
+        }
+
         SceneManager.LoadScene("WinScreen");
+
+
     }
 }
