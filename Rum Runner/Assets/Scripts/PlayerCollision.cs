@@ -34,5 +34,10 @@ public class PlayerCollision : MonoBehaviour
             Debug.Log("WIN!");
             GameManager.Win();
         }
+        else if (other.tag == "Trigger")
+        {
+            Debug.Log("Shoot dart!");
+            other.transform.parent.GetComponent<DartTrap>().isTriggered = true;
+        }
     }
 }

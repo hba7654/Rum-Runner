@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float coyoteTime;
     private float coyoteTimeLeft;
     [SerializeField] bool isFacingRight;
+    private bool hasMoved;
 
     [Header("Ground Check")]
     [SerializeField] bool isGrounded;
@@ -34,10 +35,16 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         normalGravity = rb.gravityScale;
         isFacingRight = true;
+        hasMoved = false;
     }
 
     public void Move(InputAction.CallbackContext context)
     {
+        if(!hasMoved)
+        {
+            hasMoved = true;
+            GameManager.isPaused = false;
+        }
         moveVector = context.ReadValue<Vector2>();
     }
 

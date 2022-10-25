@@ -7,20 +7,25 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static float finalTime;
+    public static float fastestTime;
     public static int finalRumBottles;
 
     private static float timer;
     [SerializeField] GameObject exit;
     [SerializeField] Text timeText;
     [SerializeField] Text scoreText;
+    [SerializeField] Text fastestTimeText;
+
 
     public int levelScore;
     public static int rumBottles = 0;
     public static bool isPaused;
     // Start is called before the first frame update
+    public GameObject pauseScreen;
+
     void Awake()
     {
-        isPaused = false;
+        isPaused = true;
         exit.SetActive(false);
         timer = 0;
         rumBottles = levelScore;
@@ -44,6 +49,8 @@ public class GameManager : MonoBehaviour
                 exit.SetActive(true);
             }
         }
+        pauseScreen.SetActive(isPaused);
+
     }
 
 
@@ -62,6 +69,14 @@ public class GameManager : MonoBehaviour
     {
         finalTime = timer;
         finalRumBottles = rumBottles;
+
+        if (finalTime <= fastestTime)
+        {
+            fastestTime = finalTime;
+        }
+
         SceneManager.LoadScene("WinScreen");
+
+
     }
 }
