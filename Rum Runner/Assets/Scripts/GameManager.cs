@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     public static float finalTime;
     public static float fastestTime;
     public static int finalRumBottles;
-    public static float fastestTime;
 
     private static float timer;
     [SerializeField] GameObject exit;
