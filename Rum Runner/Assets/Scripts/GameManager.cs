@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         levelScore = 0;
         PlayerPrefs.GetFloat("fastestTime", 100.0f);
         PlayerPrefs.Save();
-        Debug.Log(PlayerPrefs.GetFloat("fastestTime"));
+        //Debug.Log(PlayerPrefs.GetFloat("fastestTime"));
 
 
         fastestTimeText.text = ("Fastest Time: " + PlayerPrefs.GetFloat("fastestTime").ToString("F2") + "s");
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(PlayerPrefs.GetFloat("fastestTime"));
+        Debug.Log(PlayerPrefs.GetFloat("fastestTime"));
         Debug.Log(PlayerPrefs.HasKey("fastestTime"));
         if (!isPaused)
         {
