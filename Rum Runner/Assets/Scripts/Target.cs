@@ -66,6 +66,7 @@ public class Target : MonoBehaviour
             }
 
             Destroy(collision.gameObject);
+            Destroy(gameObject);
         }
     }
 
