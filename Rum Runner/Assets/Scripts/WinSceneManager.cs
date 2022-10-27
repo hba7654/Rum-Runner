@@ -21,6 +21,11 @@ public class WinSceneManager : MonoBehaviour
         SceneManager.LoadScene("Level 1-1");
     }
 
+    public void NextLevel()
+    {
+        SceneManager.LoadScene("Level 2");
+    }
+
     public void Quit()
     {
         SceneManager.LoadScene("TitleScreen");
