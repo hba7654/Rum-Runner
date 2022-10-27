@@ -13,10 +13,13 @@ public class PlayerManager : MonoBehaviour
     [Header("Spawn Position")]
     [SerializeField] Vector3 spawnPos;
 
-    [Header("Double Jump Shoes Collision Check")]
+    [Header("Double Jump Shoes")]
     public bool hasShoes;
     public bool usedDoubleJump;
     public Collider2D doubleJumpShoe;
+
+    [Header("Pistol")]
+    public bool hasPistol;
 
     // Start is called before the first frame update
     void Start()

@@ -18,7 +18,13 @@ public class PlayerCollision : MonoBehaviour
             playerManager.hasShoes = true;
             Destroy(other.gameObject);
         }
-        else if(other.tag == "Collectable")
+        else if (other.tag == "Pistol")
+        {
+            Debug.Log("Pistol picked up!");
+            Destroy(other.gameObject);
+            playerManager.hasPistol = true;
+        }
+        else if (other.tag == "Collectable")
         {
             Debug.Log("Collectable picked up!");
             Destroy(other.gameObject);

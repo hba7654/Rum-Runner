@@ -9,6 +9,7 @@ public class PlayerUtility : MonoBehaviour
     public GameObject bullet;
     private Bullet bulletScript;
     public Camera mainCam;
+    private PlayerManager playerManager;
 
     [Header("General Variables")]
     private Vector2 mousePosition;
@@ -20,12 +21,13 @@ public class PlayerUtility : MonoBehaviour
     public void Awake()
     {
         bulletSpeed = 5f;
+        playerManager = GetComponent<PlayerManager>();
        
     }
 
     private void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current.leftButton.wasPressedThisFrame && playerManager.hasPistol)
             Fire();
     }
 
