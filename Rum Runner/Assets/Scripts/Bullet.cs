@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         cleanupCutX = 15f;
-        cleanupCutY = 10f;
+        cleanupCutY = 19f;
     }
 
     public void Update()
