@@ -33,18 +33,28 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         levelScore = 0;
+        PlayerPrefs.GetFloat("fastestTimeLv1", 100.0f);
+        PlayerPrefs.Save();
+        Debug.Log(PlayerPrefs.HasKey("fastestTimeLv1"));
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        fastestTime = PlayerPrefs.GetFloat("fastestTimeLv1");
+        Debug.Log(fastestTime);
+
+
         if (!isPaused)
         {
             timer += Time.deltaTime;
             timeText.text = ("Time: " + timer.ToString("F2") + "s");
             scoreText.text = ("Bottles Collected: " + rumBottles.ToString());
+            fastestTimeText.text = ("Fastest Time: " + fastestTime.ToString("F2") + "s");
 
-            if(rumBottles >= 3)
+
+            if (rumBottles >= 3)
             {
                 exit.SetActive(true);
             }
@@ -72,7 +82,11 @@ public class GameManager : MonoBehaviour
 
         if (finalTime <= fastestTime)
         {
-            fastestTime = finalTime;
+            PlayerPrefs.SetFloat("fastestTimeLv1", finalTime);
+            PlayerPrefs.Save();
+            Debug.Log("new fastest: " + PlayerPrefs.GetFloat("fastestTimeLv1").ToString());
+
+            fastestTime = PlayerPrefs.GetFloat("fastestTimeLv1");
         }
 
         SceneManager.LoadScene("WinScreen");
