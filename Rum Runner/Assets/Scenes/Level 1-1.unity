@@ -3405,7 +3405,19 @@ PrefabInstance:
     - target: {fileID: 6704897257098906116, guid: 76e311e359a389549ba27688093adcc0, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: bc15b08a8bad92c4fb7c4b99352290d2, type: 3}
+      objectReference: {fileID: 21300000, guid: 627cd31a80c4dde4c8540c5d394d2aa6, type: 3}
+    - target: {fileID: 6704897257098906119, guid: 76e311e359a389549ba27688093adcc0, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704897257098906119, guid: 76e311e359a389549ba27688093adcc0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704897257098906119, guid: 76e311e359a389549ba27688093adcc0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6704897257126512766, guid: 76e311e359a389549ba27688093adcc0, type: 3}
       propertyPath: m_Sprite
       value: 
