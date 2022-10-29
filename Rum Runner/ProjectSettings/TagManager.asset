@@ -9,6 +9,7 @@ TagManager:
   - Exit
   - Trigger
   - Bullet
+  - Pistol
   layers:
   - Default
   - TransparentFX

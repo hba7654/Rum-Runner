@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class PauseSceneManager : MonoBehaviour
 {
-    public GameObject gameManager;
 
     public void Resume()
     {
@@ -16,7 +15,7 @@ public class PauseSceneManager : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene("Level 1-1");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Quit()
