@@ -41,7 +41,7 @@ public class PlayerUtility : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
             Fire();
-        if (Mouse.current.rightButton.wasPressedThisFrame)
+        if (Mouse.current.rightButton.isPressed)
         {
             pMoveScript.isGrappling = true;
             Grapple();
@@ -49,6 +49,7 @@ public class PlayerUtility : MonoBehaviour
         else if(Mouse.current.rightButton.wasReleasedThisFrame)
         {
             pMoveScript.isGrappling = false;
+            pMoveScript.moveVector = Vector2.zero;
         }
         //else
         //{

@@ -46,7 +46,8 @@ public class PlayerMovement : MonoBehaviour
             hasMoved = true;
             GameManager.isPaused = false;
         }
-        moveVector = context.ReadValue<Vector2>();
+        if(!isGrappling)
+            moveVector = context.ReadValue<Vector2>();
     }
 
     public void Jump(InputAction.CallbackContext context)
