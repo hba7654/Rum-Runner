@@ -427,7 +427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6704897257483913414, guid: 76e311e359a389549ba27688093adcc0, type: 3}
       propertyPath: m_FontData.m_FontSize
-      value: 40
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 6704897258143961246, guid: 76e311e359a389549ba27688093adcc0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
