@@ -258,13 +258,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Goal:\n  - Collect the minimum numbers of rum bottles as fast as you can!\n\nMovement:\n 
+  m_text: "Goal:\n  - Collect the minimum numbers of rum bottles as fast as you can!\nMovement:\n 
     - Use WASD for an optimal game experience or the Arrow keys if \n    need to
-    move left & right.\n  - Use space to jump\n\nGadgets:\n  - Enable double jump
-    by collecting the double jump shoes\n  - Use the mouse to aim the pistol"
+    move left & right.\n  - Use space to jump\nGadgets:\n  - Enable double jump by
+    collecting the double jump shoes\n  - Use the mouse to aim the pistol"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 72d24f7312483844897f7adffd6820ba, type: 2}
+  m_sharedMaterial: {fileID: 441208918113507900, guid: 72d24f7312483844897f7adffd6820ba, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -288,8 +288,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13
-  m_fontSizeBase: 13
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1151,8 +1151,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 26
+    m_Font: {fileID: 12800000, guid: e260d602e02cb1b43870c11fab747e7e, type: 3}
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
