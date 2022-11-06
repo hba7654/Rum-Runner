@@ -1,38 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static float finalTime;
-    public static float fastestTime;
-    public static int finalRumBottles;
+    public static float totalTime;
+    public static float totalFastestTime;
+    public static int totalRumBottles;
+    public static int rumBottles = 0;
 
-    private static float timer;
-    [SerializeField] GameObject exit;
+    public static int level;
+
+    public static float timer;
     [SerializeField] Text timeText;
     [SerializeField] Text scoreText;
     [SerializeField] Text fastestTimeText;
 
 
-    public int levelScore;
-    public static int rumBottles = 0;
     public static bool isPaused;
-    // Start is called before the first frame update
     public GameObject pauseScreen;
+
 
     void Awake()
     {
         isPaused = true;
-        exit.SetActive(false);
         timer = 0;
-        rumBottles = levelScore;
-    }
-    private void Start()
-    {
-        levelScore = 0;
+        rumBottles = 0;
     }
 
     // Update is called once per frame
@@ -44,19 +38,9 @@ public class GameManager : MonoBehaviour
             timeText.text = ("Time: " + timer.ToString("F2") + "s");
             scoreText.text = ("Bottles Collected: " + rumBottles.ToString());
 
-            if(rumBottles >= 3)
-            {
-                exit.SetActive(true);
-            }
         }
         pauseScreen.SetActive(isPaused);
 
-    }
-
-
-    public static void Die()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public static void Pause()
@@ -67,16 +51,33 @@ public class GameManager : MonoBehaviour
 
     public static void Win()
     {
-        finalTime = timer;
-        finalRumBottles = rumBottles;
-
-        if (finalTime <= fastestTime)
+        switch(level)
         {
-            fastestTime = finalTime;
+            case 1:
+                Level1Manager.Win();
+                break;
+            case 2:
+                Level2Manager.Win();
+                break ;
+            case 3:
+                Level3Manager.Win();
+                break;
         }
+    }
 
-        SceneManager.LoadScene("WinScreen");
-
-
+    public static void Die()
+    {
+        switch (level)
+        {
+            case 1:
+                Level1Manager.Die();
+                break;
+            case 2:
+                Level2Manager.Die();
+                break;
+            case 3:
+                Level3Manager.Die();
+                break;
+        }
     }
 }
