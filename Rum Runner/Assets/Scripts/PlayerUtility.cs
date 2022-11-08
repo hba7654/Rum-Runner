@@ -41,9 +41,12 @@ public class PlayerUtility : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
             Fire();
-        if (Mouse.current.rightButton.isPressed)
+        if(Mouse.current.rightButton.wasPressedThisFrame)
         {
-            pMoveScript.isGrappling = true;
+            OnGrapple();
+        }
+        else if (Mouse.current.rightButton.isPressed)
+        {
             Grapple();
         }
         else if(Mouse.current.rightButton.wasReleasedThisFrame)
@@ -67,12 +70,17 @@ public class PlayerUtility : MonoBehaviour
         bulletScript.InitialMove(bulletSpeed, mouseDirVector);
     }
 
-    public void Grapple()
+    private void OnGrapple()
     {
         mousePosition = GetMousePosition();
-        mouseDirVector = GetMouseVector();
-
         Debug.Log(mousePosition);
+
+    }
+
+    public void Grapple()
+    {
+
+        mouseDirVector = GetMouseVector();
         lineRenderer.SetPosition(0, mousePosition);
         lineRenderer.SetPosition(1, transform.position);
         //distJoint.connectedAnchor = mousePosition;
@@ -88,6 +96,7 @@ public class PlayerUtility : MonoBehaviour
         Debug.Log(hit.collider.gameObject);
         if(hit.collider!= null)
         {
+            pMoveScript.isGrappling = true;
             pMoveScript.moveVector = mouseDirVector;
             //Vector2 vel =  pMoveScript.moveSpeed * mouseDirVector;
             //Debug.Log(vel);
@@ -98,10 +107,11 @@ public class PlayerUtility : MonoBehaviour
 
     public Vector2 GetMouseVector()
     {
+
         Vector3 playerPos = transform.position;
-        Vector3 mousePos = Mouse.current.position.ReadValue();
-        Vector3 Worldpos = Camera.main.ScreenToWorldPoint(mousePos);
-        return new Vector2(Worldpos.x - playerPos.x, Worldpos.y - playerPos.y).normalized;
+        //Vector3 mousePos = Mouse.current.position.ReadValue();
+        //Vector3 Worldpos = Camera.main.ScreenToWorldPoint(mousePos);
+        return new Vector2(mousePosition.x - playerPos.x, mousePosition.y - playerPos.y).normalized;
     }
 
     public Vector2 GetMousePosition()
