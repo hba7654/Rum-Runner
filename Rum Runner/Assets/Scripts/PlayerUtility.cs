@@ -66,6 +66,7 @@ public class PlayerUtility : MonoBehaviour
 
     public void Fire()
     {
+        mousePosition = GetMousePosition();
         GameObject bulletClone;
         Vector2 bulletSpawnPosition = new Vector2(transform.position.x + 0.5f, transform.position.y);
         bulletClone = Instantiate(bullet, bulletSpawnPosition, transform.rotation);
