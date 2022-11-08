@@ -3225,7 +3225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8302c2065ea6d748a15932652bb71f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exit: {fileID: 0}
+  exit: {fileID: 712439640}
   requiredScore: 3
   levelScore: 0
 --- !u!1001 &953737162963005872
