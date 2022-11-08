@@ -16,11 +16,11 @@ public class PlayerUtility : MonoBehaviour
 
 
     [Header("Shooting Variables")]
-    private float bulletSpeed;
+    [SerializeField] private float bulletSpeed;
 
     public void Awake()
     {
-        bulletSpeed = 5f;
+        //bulletSpeed = 5f;
         playerManager = GetComponent<PlayerManager>();
        
     }
