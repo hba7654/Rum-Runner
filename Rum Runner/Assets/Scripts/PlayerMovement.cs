@@ -8,8 +8,8 @@ public class PlayerMovement : MonoBehaviour
     private PlayerManager playerManager;
 
     [Header("Movement Variables")]
-    private Rigidbody2D rb;
-    private Vector2 moveVector;
+    public Rigidbody2D rb;
+    public Vector2 moveVector;
     private bool canJump;
     public float jumpDistance;
     public float jumpingGravity;
@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteTimeLeft;
     [SerializeField] bool isFacingRight;
     private bool hasMoved;
+    public bool isGrappling;
 
     [Header("Ground Check")]
     [SerializeField] bool isGrounded;
@@ -45,7 +46,8 @@ public class PlayerMovement : MonoBehaviour
             hasMoved = true;
             GameManager.isPaused = false;
         }
-        moveVector = context.ReadValue<Vector2>();
+        if(!isGrappling)
+            moveVector = context.ReadValue<Vector2>();
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -112,7 +114,13 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (!GameManager.isPaused)
-            rb.velocity = new Vector2(moveVector.x * moveSpeed, rb.velocity.y);
+        {
+            if(isGrappling)
+                rb.velocity = new Vector2(moveVector.x * moveSpeed, moveVector.y * moveSpeed);
+            else
+                rb.velocity = new Vector2(moveVector.x * moveSpeed, rb.velocity.y);
+
+        }
         else
         {
             rb.velocity = Vector2.zero;
