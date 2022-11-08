@@ -31,6 +31,7 @@ public class PlayerUtility : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         pMoveScript = GetComponent<PlayerMovement>();
         //distJoint = GetComponent<DistanceJoint2D>();
+        playerManager = GetComponent<PlayerManager>();  
 
         lineRenderer.enabled = false;
         //distJoint.enabled = false;
@@ -94,7 +95,6 @@ public class PlayerUtility : MonoBehaviour
         //}
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, mouseDirVector, grappleLength, pMoveScript.groundLayer);
-        Debug.Log(hit.collider.gameObject);
         if(hit.collider!= null)
         {
             pMoveScript.isGrappling = true;
