@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
             timer += Time.deltaTime;
             timeText.text = ("Time: " + timer.ToString("F2") + "s");
             scoreText.text = ("Bottles Collected: " + rumBottles.ToString() + "/" + requiredScore.ToString());
+            fastestTimeText.text = ("Fastest Time: " + totalFastestTime.ToString("F2") + "s");
 
         }
         pauseScreen.SetActive(isPaused);
