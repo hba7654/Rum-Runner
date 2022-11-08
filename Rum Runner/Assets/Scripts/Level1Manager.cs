@@ -28,6 +28,7 @@ public class Level1Manager : MonoBehaviour
         startingTime = GameManager.totalTime;
         startingFastestTime = GameManager.totalFastestTime;
         startingScore = GameManager.totalRumBottles;
+        GameManager.requiredScore = requiredScore;
     }
 
     // Update is called once per frame

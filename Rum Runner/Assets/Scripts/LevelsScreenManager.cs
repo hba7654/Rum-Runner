@@ -2,28 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class TitleSceneManager : MonoBehaviour
+public class LevelsScreenManager : MonoBehaviour
 {
-
     public void LevelOne()
     {
         SceneManager.LoadScene("Level 1-1");
     }
 
-    public void Instructions()
+    public void LevelTwo()
     {
-        SceneManager.LoadScene("InstructionsScreen");
+        SceneManager.LoadScene("Level 2");
     }
 
-    public void LevelsScreen()
+    public void LevelThree()
     {
-        SceneManager.LoadScene("LevelsScreen");
+        SceneManager.LoadScene("Level 3");
     }
 
     public void Quit()
     {
-        Application.Quit();
+        SceneManager.LoadScene("TitleScreen");
     }
+
 }

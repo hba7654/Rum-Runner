@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static float totalFastestTime;
     public static int totalRumBottles;
     public static int rumBottles = 0;
+    public static int requiredScore = 0;
 
     public static int level;
 
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour
         {
             timer += Time.deltaTime;
             timeText.text = ("Time: " + timer.ToString("F2") + "s");
-            scoreText.text = ("Bottles Collected: " + rumBottles.ToString());
+            scoreText.text = ("Bottles Collected: " + rumBottles.ToString() + "/" + requiredScore.ToString());
 
         }
         pauseScreen.SetActive(isPaused);
