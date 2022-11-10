@@ -21,6 +21,9 @@ public class PlayerManager : MonoBehaviour
     [Header("Pistol")]
     public bool hasPistol;
 
+    [Header("Grapple")]
+    public bool hasGrapple;
+
     // Start is called before the first frame update
     void Start()
     {

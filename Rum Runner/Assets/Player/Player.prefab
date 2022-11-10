@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 701222696259178938}
   - component: {fileID: 701222696259178937}
   - component: {fileID: 701222696259178936}
-  - component: {fileID: 701222696259178939}
   - component: {fileID: 7674148722719694860}
   - component: {fileID: -6221311582152563073}
   - component: {fileID: 4661473400583280012}
   - component: {fileID: -5842684249135460420}
+  - component: {fileID: 7129578202939421608}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -266,22 +266,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!70 &701222696259178939
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 701222696259178933}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
-  m_Direction: 0
 --- !u!114 &7674148722719694860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,10 +279,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPos: {x: 0, y: 0, z: 0}
-  hasShoes: 0
+  hasShoes: 1
   usedDoubleJump: 0
   doubleJumpShoe: {fileID: 0}
-  hasPistol: 0
+  hasPistol: 1
+  hasGrapple: 1
 --- !u!114 &-6221311582152563073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,7 +305,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 701222696259178933}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 4ee9b62840b16b94baffb9f437d4313a, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -436,6 +421,23 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &7129578202939421608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701222696259178933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1225ee251f2eaba4383b7506de92194c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 6457276483983586784, guid: e761f490d22cb074189c97365fd96367, type: 3}
+  mainCam: {fileID: 0}
+  bulletSpeed: 10
+  lineRenderer: {fileID: 0}
+  grappleLength: 10
 --- !u!1 &9077421568889326758
 GameObject:
   m_ObjectHideFlags: 0

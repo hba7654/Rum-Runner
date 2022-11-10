@@ -27,10 +27,8 @@ public class PlayerUtility : MonoBehaviour
 
     public void Awake()
     {
-        //bulletSpeed = 5f;
         playerManager = GetComponent<PlayerManager>();
        
-        bulletSpeed = 5f;
         lineRenderer = GetComponent<LineRenderer>();
         pMoveScript = GetComponent<PlayerMovement>();
         //distJoint = GetComponent<DistanceJoint2D>();
@@ -47,18 +45,21 @@ public class PlayerUtility : MonoBehaviour
         {
             if (Mouse.current.leftButton.wasPressedThisFrame && playerManager.hasPistol)
                 Fire();
-            if (Mouse.current.rightButton.wasPressedThisFrame)
+            if (playerManager.hasGrapple)
             {
-                OnGrapple();
-            }
-            else if (Mouse.current.rightButton.isPressed)
-            {
-                Grapple();
-            }
-            else if (Mouse.current.rightButton.wasReleasedThisFrame)
-            {
-                pMoveScript.isGrappling = false;
-                pMoveScript.moveVector = Vector2.zero;
+                if (Mouse.current.rightButton.wasPressedThisFrame)
+                {
+                    OnGrapple();
+                }
+                else if (Mouse.current.rightButton.isPressed)
+                {
+                    Grapple();
+                }
+                else if (Mouse.current.rightButton.wasReleasedThisFrame)
+                {
+                    pMoveScript.isGrappling = false;
+                    pMoveScript.moveVector = Vector2.zero;
+                }
             }
         }
     }
