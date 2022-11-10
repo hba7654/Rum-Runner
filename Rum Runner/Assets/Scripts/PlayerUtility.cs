@@ -86,8 +86,6 @@ public class PlayerUtility : MonoBehaviour
     {
 
         mouseDirVector = GetMouseVector();
-        lineRenderer.SetPosition(0, mousePosition);
-        lineRenderer.SetPosition(1, transform.position);
         //distJoint.connectedAnchor = mousePosition;
         //distJoint.enabled = true;
         lineRenderer.enabled = true;
@@ -100,6 +98,10 @@ public class PlayerUtility : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, mouseDirVector, grappleLength, pMoveScript.groundLayer);
         if(hit.collider!= null)
         {
+            mousePosition = hit.point;
+            Debug.Log(hit.transform.gameObject.ToString());
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, hit.point);
             pMoveScript.isGrappling = true;
             pMoveScript.moveVector = mouseDirVector;
             //Vector2 vel =  pMoveScript.moveSpeed * mouseDirVector;
