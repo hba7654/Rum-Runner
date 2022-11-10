@@ -2751,6 +2751,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2785037172650600052, guid: 2b4c15a5fdb37934bb94b2cec701ab45, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.92
+      objectReference: {fileID: 0}
     - target: {fileID: 2785037173334836281, guid: 2b4c15a5fdb37934bb94b2cec701ab45, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2799,6 +2803,10 @@ PrefabInstance:
       propertyPath: dart
       value: 
       objectReference: {fileID: 2361702666328983528, guid: a0a56236dd224094f9c6446014d44bc5, type: 3}
+    - target: {fileID: 2785037173334836294, guid: 2b4c15a5fdb37934bb94b2cec701ab45, type: 3}
+      propertyPath: dartSpeed
+      value: 19
+      objectReference: {fileID: 0}
     - target: {fileID: 2785037173334836295, guid: 2b4c15a5fdb37934bb94b2cec701ab45, type: 3}
       propertyPath: m_Name
       value: Dart Trap (1)
@@ -2880,14 +2888,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 489762265}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1225ee251f2eaba4383b7506de92194c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 6457276483983586784, guid: e761f490d22cb074189c97365fd96367, type: 3}
   mainCam: {fileID: 2120506510}
-  lineRenderer: {fileID: 0}
+  bulletSpeed: 0
+  lineRenderer: {fileID: 1846642074}
   grappleLength: 10
 --- !u!120 &1846642074
 LineRenderer:
@@ -3178,13 +3187,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2785037172650600052, guid: 2b4c15a5fdb37934bb94b2cec701ab45, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.57
+      objectReference: {fileID: 0}
     - target: {fileID: 2785037173334836281, guid: 2b4c15a5fdb37934bb94b2cec701ab45, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2785037173334836281, guid: 2b4c15a5fdb37934bb94b2cec701ab45, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.93
+      value: 3.9
       objectReference: {fileID: 0}
     - target: {fileID: 2785037173334836281, guid: 2b4c15a5fdb37934bb94b2cec701ab45, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3226,6 +3239,10 @@ PrefabInstance:
       propertyPath: dart
       value: 
       objectReference: {fileID: 2361702666328983528, guid: a0a56236dd224094f9c6446014d44bc5, type: 3}
+    - target: {fileID: 2785037173334836294, guid: 2b4c15a5fdb37934bb94b2cec701ab45, type: 3}
+      propertyPath: dartSpeed
+      value: 19.08
+      objectReference: {fileID: 0}
     - target: {fileID: 2785037173334836295, guid: 2b4c15a5fdb37934bb94b2cec701ab45, type: 3}
       propertyPath: m_Name
       value: Dart Trap
