@@ -43,25 +43,24 @@ public class PlayerUtility : MonoBehaviour
 
     private void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame && playerManager.hasPistol)
-            Fire();
-        if(Mouse.current.rightButton.wasPressedThisFrame)
+        if (GameManager.hasStarted)
         {
-            OnGrapple();
+            if (Mouse.current.leftButton.wasPressedThisFrame && playerManager.hasPistol)
+                Fire();
+            if (Mouse.current.rightButton.wasPressedThisFrame)
+            {
+                OnGrapple();
+            }
+            else if (Mouse.current.rightButton.isPressed)
+            {
+                Grapple();
+            }
+            else if (Mouse.current.rightButton.wasReleasedThisFrame)
+            {
+                pMoveScript.isGrappling = false;
+                pMoveScript.moveVector = Vector2.zero;
+            }
         }
-        else if (Mouse.current.rightButton.isPressed)
-        {
-            Grapple();
-        }
-        else if(Mouse.current.rightButton.wasReleasedThisFrame)
-        {
-            pMoveScript.isGrappling = false;
-            pMoveScript.moveVector = Vector2.zero;
-        }
-        //else
-        //{
-        //    distJoint.enabled = true;
-        //}
     }
 
     public void Fire()
