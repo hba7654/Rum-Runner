@@ -35,12 +35,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        fastestTimeText.text = ("Fastest Time: " + totalFastestTime.ToString("F2") + "s");
         if (!isPaused && hasStarted)
         {
             timer += Time.deltaTime;
             timeText.text = ("Time: " + timer.ToString("F2") + "s");
             scoreText.text = ("Bottles Collected: " + rumBottles.ToString() + "/" + requiredScore.ToString());
-            fastestTimeText.text = ("Fastest Time: " + totalFastestTime.ToString("F2") + "s");
 
         }
         pauseScreen.SetActive(isPaused);
