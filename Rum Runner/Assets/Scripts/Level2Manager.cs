@@ -82,6 +82,6 @@ public class Level2Manager : MonoBehaviour
         GameManager.totalFastestTime += fastestTime;
         GameManager.totalRumBottles += finalRumBottles;
 
-        SceneManager.LoadScene("Level 3");
+        SceneManager.LoadScene("TitleScreen");
     }
 }

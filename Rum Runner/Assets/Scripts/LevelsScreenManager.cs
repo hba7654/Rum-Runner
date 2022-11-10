@@ -17,7 +17,7 @@ public class LevelsScreenManager : MonoBehaviour
 
     public void LevelThree()
     {
-        SceneManager.LoadScene("Level 3");
+        //SceneManager.LoadScene("Level 3");
     }
 
     public void Quit()
