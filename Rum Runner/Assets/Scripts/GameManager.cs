@@ -20,12 +20,14 @@ public class GameManager : MonoBehaviour
 
 
     public static bool isPaused;
+    public static bool hasStarted;
     public GameObject pauseScreen;
 
 
     void Awake()
     {
-        isPaused = true;
+        isPaused = false;
+        hasStarted = false;
         timer = 0;
         rumBottles = 0;
     }
@@ -33,7 +35,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isPaused)
+        if (!isPaused && hasStarted)
         {
             timer += Time.deltaTime;
             timeText.text = ("Time: " + timer.ToString("F2") + "s");

@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         if(!hasMoved)
         {
             hasMoved = true;
-            GameManager.isPaused = false;
+            GameManager.hasStarted = true;
         }
         if(!isGrappling)
             moveVector = context.ReadValue<Vector2>();
