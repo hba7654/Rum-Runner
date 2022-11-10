@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteTimeLeft;
     [SerializeField] bool isFacingRight;
     private bool hasMoved;
+    private bool isMoving;
     public bool isGrappling;
 
     [Header("Ground Check")]
@@ -37,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         normalGravity = rb.gravityScale;
         isFacingRight = true;
         hasMoved = false;
+        isMoving = false;
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -46,8 +48,18 @@ public class PlayerMovement : MonoBehaviour
             hasMoved = true;
             GameManager.hasStarted = true;
         }
-        if(!isGrappling)
+        if (!isGrappling)
+        {
             moveVector = context.ReadValue<Vector2>();
+            isMoving = true;
+            //if(context.canceled)
+            //{
+            //    isMoving = false;
+            //}
+        }
+        else 
+            isMoving = false;
+
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -98,6 +110,10 @@ public class PlayerMovement : MonoBehaviour
                     canJump = false;
                 }
             }
+            if(!isMoving && !isGrappling)
+            {
+                moveVector = Vector2.zero;
+            }
         }
 
 
@@ -115,6 +131,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!GameManager.isPaused)
         {
+            Debug.Log(moveVector);
             if(isGrappling)
                 rb.velocity = new Vector2(moveVector.x * moveSpeed, moveVector.y * moveSpeed);
             else

@@ -14,6 +14,7 @@ public class PlayerUtility : MonoBehaviour
     [Header("General Variables")]
     private Vector2 mousePosition;
     private Vector2 mouseDirVector;
+    private Vector2 lastMouseDirVector;
 
 
     [Header("Shooting Variables")]
@@ -23,91 +24,118 @@ public class PlayerUtility : MonoBehaviour
     public LineRenderer lineRenderer;
     public float grappleLength;
     private PlayerMovement pMoveScript;
-    //public DistanceJoint2D distJoint;
+    private bool isGrappling;
+    private bool startedGrappling;
+    private bool allowGrappling;
+    private bool stopGrappling;
 
     public void Awake()
     {
-        //bulletSpeed = 5f;
         playerManager = GetComponent<PlayerManager>();
-       
+
         bulletSpeed = 5f;
         lineRenderer = GetComponent<LineRenderer>();
         pMoveScript = GetComponent<PlayerMovement>();
-        //distJoint = GetComponent<DistanceJoint2D>();
 
         lineRenderer.enabled = false;
-        //distJoint.enabled = false;
-
+        isGrappling = false;
+        startedGrappling = false;
+        allowGrappling = false;
+        stopGrappling = false;
 
     }
 
     private void Update()
     {
-        if (GameManager.hasStarted)
+        if(isGrappling)
         {
-            if (Mouse.current.leftButton.wasPressedThisFrame && playerManager.hasPistol)
-                Fire();
-            if (Mouse.current.rightButton.wasPressedThisFrame)
+            if (!startedGrappling)
             {
-                OnGrapple();
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, mouseDirVector, grappleLength, pMoveScript.groundLayer);
+                mousePosition = hit.point;
+                if (hit.collider != null)
+                {
+                    allowGrappling = true;
+                    pMoveScript.isGrappling = true;
+                }
             }
-            else if (Mouse.current.rightButton.isPressed)
+            if(allowGrappling)
             {
-                Grapple();
+                //mouseDirVector = GetMouseVector();
+                lineRenderer.SetPosition(0, transform.position);
+                lineRenderer.SetPosition(1, mousePosition);
+                pMoveScript.moveVector = mouseDirVector;
+                lineRenderer.enabled = true;
+                Vector2 distance = new Vector2(transform.position.x - mousePosition.x, transform.position.y - mousePosition.y);
+
+                if (distance.magnitude <= 1)
+                {
+                    isGrappling = false;
+                    startedGrappling = false;
+                    allowGrappling = false;
+                    pMoveScript.isGrappling = false;
+                    lineRenderer.enabled = false;
+                }
             }
-            else if (Mouse.current.rightButton.wasReleasedThisFrame)
+        }
+    }
+
+    public void Look(InputAction.CallbackContext context)
+    {
+        if(!isGrappling)
+        {
+            if (context.control.displayName == "Position")
             {
-                pMoveScript.isGrappling = false;
-                pMoveScript.moveVector = Vector2.zero;
+                mousePosition = GetMousePosition();
+                mouseDirVector = GetMouseVector();
+            }
+            else if (context.control.displayName == "Right Stick")
+            {
+                lastMouseDirVector = mouseDirVector;
+                mouseDirVector = context.ReadValue<Vector2>();
             }
         }
     }
 
     public void Fire()
     {
-        mousePosition = GetMousePosition();
-        GameObject bulletClone;
-        Vector2 bulletSpawnPosition = new Vector2(transform.position.x + 0.5f, transform.position.y);
-        bulletClone = Instantiate(bullet, bulletSpawnPosition, transform.rotation);
-        bulletScript = bulletClone.GetComponent<Bullet>();
-        mouseDirVector = GetMouseVector();
-        bulletScript.InitialMove(bulletSpeed, mouseDirVector);
-    }
-
-    private void OnGrapple()
-    {
-        mousePosition = GetMousePosition();
-        Debug.Log(mousePosition);
-
-    }
-
-    public void Grapple()
-    {
-
-        mouseDirVector = GetMouseVector();
-        //distJoint.connectedAnchor = mousePosition;
-        //distJoint.enabled = true;
-        lineRenderer.enabled = true;
-
-        //if (distJoint.enabled)
-        //{
-        //    lineRenderer.SetPosition(1, transform.position);
-        //}
-
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, mouseDirVector, grappleLength, pMoveScript.groundLayer);
-        if(hit.collider!= null)
+        if (GameManager.hasStarted)
         {
-            mousePosition = hit.point;
-            Debug.Log(hit.transform.gameObject.ToString());
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, hit.point);
-            pMoveScript.isGrappling = true;
-            pMoveScript.moveVector = mouseDirVector;
-            //Vector2 vel =  pMoveScript.moveSpeed * mouseDirVector;
-            //Debug.Log(vel);
-            //pMoveScript.rb.velocity = vel;
-            //Debug.Log(pMoveScript.rb.velocity.x);
+            if (mouseDirVector == Vector2.zero)
+                mouseDirVector = lastMouseDirVector.normalized;
+            //mousePosition = GetMousePosition();
+            GameObject bulletClone;
+            Vector2 bulletSpawnPosition = new Vector2(transform.position.x + 0.5f, transform.position.y);
+            bulletClone = Instantiate(bullet, bulletSpawnPosition, transform.rotation);
+            bulletScript = bulletClone.GetComponent<Bullet>();
+            //mouseDirVector = GetMouseVector();
+            bulletScript.InitialMove(bulletSpeed, mouseDirVector);
         }
+    }
+
+
+    public void Grapple(InputAction.CallbackContext context)
+    {
+        if (GameManager.hasStarted)
+        {
+            if (mouseDirVector == Vector2.zero)
+                mouseDirVector = lastMouseDirVector.normalized;
+            if (context.started)
+            {
+                isGrappling = true;
+                lineRenderer.enabled = true;
+            }
+            
+            else if (context.canceled)
+            {
+                isGrappling = false;
+                startedGrappling = false;
+                allowGrappling = false;
+                pMoveScript.isGrappling = false;
+                lineRenderer.enabled = false;
+            }
+        }
+
     }
 
     public Vector2 GetMouseVector()

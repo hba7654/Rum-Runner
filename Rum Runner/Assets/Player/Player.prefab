@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -6221311582152563073}
   - component: {fileID: 4661473400583280012}
   - component: {fileID: -5842684249135460420}
+  - component: {fileID: -33466916853748560}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -182,7 +183,19 @@ MonoBehaviour:
     m_ActionId: 7b8d6334-ee3d-452c-b762-188cea634e6c
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -33466916853748560}
+        m_TargetAssemblyTypeName: PlayerUtility, Assembly-CSharp
+        m_MethodName: Look
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: de4745ad-1fa8-4342-bc1a-67be80f6fec1
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
@@ -261,6 +274,38 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 24079a87-d402-4b7d-8353-3703b33d609c
     m_ActionName: Player/Restart[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -33466916853748560}
+        m_TargetAssemblyTypeName: PlayerUtility, Assembly-CSharp
+        m_MethodName: Fire
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: acb69552-6f9a-4db8-ad7c-eb0889a23bee
+    m_ActionName: Player/Fire[/Mouse/leftButton,/DualSenseGamepadHID/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -33466916853748560}
+        m_TargetAssemblyTypeName: PlayerUtility, Assembly-CSharp
+        m_MethodName: Grapple
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c4e65fe3-d21b-463c-a4df-871856aa522f
+    m_ActionName: Player/Grapple[/Mouse/rightButton,/DualSenseGamepadHID/leftTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -436,6 +481,23 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &-33466916853748560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701222696259178933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1225ee251f2eaba4383b7506de92194c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 6457276483983586784, guid: e761f490d22cb074189c97365fd96367, type: 3}
+  mainCam: {fileID: 0}
+  bulletSpeed: 10
+  lineRenderer: {fileID: 0}
+  grappleLength: 10
 --- !u!1 &9077421568889326758
 GameObject:
   m_ObjectHideFlags: 0
