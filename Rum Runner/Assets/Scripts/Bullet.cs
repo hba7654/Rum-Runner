@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
     public void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        cleanupCutX = 15f;
+        cleanupCutX = 23f;
         cleanupCutY = 19f;
     }
 
