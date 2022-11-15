@@ -2467,6 +2467,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7674148722719694860, guid: 0a58c9746fbe693469c5faa9ff932824, type: 3}
+      propertyPath: hasShoes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674148722719694860, guid: 0a58c9746fbe693469c5faa9ff932824, type: 3}
       propertyPath: hasPistol
       value: 0
       objectReference: {fileID: 0}
