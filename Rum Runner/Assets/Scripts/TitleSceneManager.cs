@@ -26,4 +26,9 @@ public class TitleSceneManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void ClearHighScore()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }
