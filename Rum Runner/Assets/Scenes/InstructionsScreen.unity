@@ -817,7 +817,7 @@ GameObject:
   - component: {fileID: 693121244}
   - component: {fileID: 693121243}
   m_Layer: 5
-  m_Name: Play Bttn
+  m_Name: Start Bttn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -950,7 +950,7 @@ GameObject:
   - component: {fileID: 931786069}
   - component: {fileID: 931786068}
   m_Layer: 5
-  m_Name: Play text
+  m_Name: Start text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1009,7 +1009,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Play
+  m_Text: Start
 --- !u!222 &931786069
 CanvasRenderer:
   m_ObjectHideFlags: 0
