@@ -11,4 +11,8 @@ public class InstructionsSceneManager : MonoBehaviour
     {
         SceneManager.LoadScene("TitleScreen");
     }
+    public void Play()
+    {
+        SceneManager.LoadScene("Level 1-1");
+    }
 }

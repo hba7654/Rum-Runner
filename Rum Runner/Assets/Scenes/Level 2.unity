@@ -356,6 +356,17 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &308539034 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4087424952393203495, guid: bb91669614a114d4e85981ff3f3161ab, type: 3}
+  m_PrefabInstance: {fileID: 1102573118}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &438462458
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,7 +478,7 @@ PrefabInstance:
     - target: {fileID: 538043320966395068, guid: 324a0d20325355846ab6e76353e9f835, type: 3}
       propertyPath: scoreText
       value: 
-      objectReference: {fileID: 627683483}
+      objectReference: {fileID: 308539034}
     - target: {fileID: 538043320966395068, guid: 324a0d20325355846ab6e76353e9f835, type: 3}
       propertyPath: levelScore
       value: 0
@@ -530,17 +541,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 324a0d20325355846ab6e76353e9f835, type: 3}
---- !u!114 &627683483 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 953737163043491217, guid: bb91669614a114d4e85981ff3f3161ab, type: 3}
-  m_PrefabInstance: {fileID: 1102573118}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!20 &709448478 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 6704897258905397328, guid: 76e311e359a389549ba27688093adcc0, type: 3}
