@@ -15,9 +15,9 @@ public class GameManager : MonoBehaviour
     public static int level;
 
     public static float timer;
-    [SerializeField] Text timeText;
+    [SerializeField] TMP_Text timeText;
     [SerializeField] TMP_Text scoreText;
-    [SerializeField] Text fastestTimeText;
+    [SerializeField] TMP_Text fastestTimeText;
 
 
     public static bool isPaused;

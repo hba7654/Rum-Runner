@@ -336,8 +336,8 @@ MonoBehaviour:
   m_text: "Goal:\n  - Collect the minimum numbers of rum bottles as fast as you can!\nMovement:\n 
     - Use WASD for an optimal game experience or the Arrow keys if \n    need to
     move left & right.\n  - Use space to jump\n  - Use ESC to pause and R to restart\nGadgets:\n 
-    - Enable double jump by collecting the double jump shoes\n  - Use the mouse to
-    aim the pistol, left click to shoot"
+    - Enable double jump by collecting the double jump shoes\n  - Use the mouse position
+    to aim the pistol and left click to shoot"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 72d24f7312483844897f7adffd6820ba, type: 2}
   m_sharedMaterial: {fileID: 441208918113507900, guid: 72d24f7312483844897f7adffd6820ba, type: 2}
