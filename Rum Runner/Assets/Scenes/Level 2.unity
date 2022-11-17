@@ -523,6 +523,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 596330506}
     - target: {fileID: 538043320966395068, guid: 324a0d20325355846ab6e76353e9f835, type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 1922351176}
+    - target: {fileID: 538043320966395068, guid: 324a0d20325355846ab6e76353e9f835, type: 3}
       propertyPath: fastestTimeText
       value: 
       objectReference: {fileID: 1102573120}
