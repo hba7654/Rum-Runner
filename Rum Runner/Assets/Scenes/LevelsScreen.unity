@@ -1102,9 +1102,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1946650609}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelsScreenManager, Assembly-CSharp
-        m_MethodName: LevelThree
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1303,7 +1303,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Level 3
+  m_Text: Soon...
 --- !u!222 &1697976763
 CanvasRenderer:
   m_ObjectHideFlags: 0
