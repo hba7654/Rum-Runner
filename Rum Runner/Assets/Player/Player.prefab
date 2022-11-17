@@ -140,6 +140,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  playerSound: {fileID: 4447236449571404875, guid: 7ab6963de74bfbd40a3021c0c43cffdb, type: 3}
 --- !u!114 &701222696259178936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,6 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b727637a06f09534ca9cf129875d8c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSound: {fileID: 4447236449571404875, guid: 7ab6963de74bfbd40a3021c0c43cffdb, type: 3}
 --- !u!61 &4661473400583280012
 BoxCollider2D:
   m_ObjectHideFlags: 0

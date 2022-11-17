@@ -14,6 +14,7 @@ public class PlayerUtility : MonoBehaviour
     [Header("General Variables")]
     private Vector2 mousePosition;
     private Vector2 mouseDirVector;
+    public SoundManager soundManager;
 
 
     [Header("Shooting Variables")]
@@ -66,6 +67,7 @@ public class PlayerUtility : MonoBehaviour
 
     public void Fire()
     {
+        soundManager.PlaySound("shoot");
         mousePosition = GetMousePosition();
         GameObject bulletClone;
         Vector2 bulletSpawnPosition = new Vector2(transform.position.x + 0.5f, transform.position.y);

@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundSpot;
     public LayerMask groundLayer;
 
-
+    public SoundManager playerSound;
     private float normalGravity;
 
     private void Awake()
@@ -37,17 +37,24 @@ public class PlayerMovement : MonoBehaviour
         normalGravity = rb.gravityScale;
         isFacingRight = true;
         hasMoved = false;
+
     }
 
     public void Move(InputAction.CallbackContext context)
     {
-        if(!hasMoved)
+        if (context.started)
+            playerSound.PlaySound("run");
+        else if (context.canceled)
+            playerSound.StopSound("run");
+        if (!hasMoved)
         {
             hasMoved = true;
             GameManager.hasStarted = true;
         }
-        if(!isGrappling)
+        if (!isGrappling)
+        {
             moveVector = context.ReadValue<Vector2>();
+        }
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -59,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.gravityScale = jumpingGravity;
                 rb.velocity = new Vector2(rb.velocity.x, jumpDistance);
+                playerSound.PlaySound("jump");
             }
             else if (!canJump && playerManager.hasShoes)
             {
@@ -67,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
                     rb.gravityScale = jumpingGravity;
                     rb.velocity = new Vector2(rb.velocity.x, jumpDistance);
                     playerManager.usedDoubleJump =true;
+                    playerSound.PlaySound("jump");
                 }
             }
             
