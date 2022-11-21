@@ -14,21 +14,22 @@ public class Bullet : MonoBehaviour
     //This is for cleaning up created bullets when the pass a certain point
     private float cleanupCutX;
     private float cleanupCutY;
+    private Vector2 initialPos;
     
 
 
     public void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        cleanupCutX = 23f;
-        cleanupCutY = 19f;
+        cleanupCutX = 10f;
+        cleanupCutY = 8f;
     }
 
     public void Update()
     {
         //checks position, if out of bounds destroy the object
-        if(transform.position.x>cleanupCutX|| transform.position.x < -cleanupCutX
-            || transform.position.y > cleanupCutY || transform.position.y < -cleanupCutX)
+        if (transform.position.x > initialPos.x + cleanupCutX || transform.position.x < initialPos.x - cleanupCutX
+            || transform.position.y > initialPos.y + cleanupCutY || transform.position.y < initialPos.y - cleanupCutX)
         {
             Debug.Log("Destroying this object");
             Destroy(gameObject);
@@ -38,8 +39,41 @@ public class Bullet : MonoBehaviour
     public void InitialMove(float bSpeed, Vector2 initalVelocity)
     {
         Debug.Log("Intial Move has been called"+ initalVelocity);
+        initialPos = transform.position;
         currentVelocity = initalVelocity;
         bulletSpeed = bSpeed;
         rb.velocity = new Vector2(currentVelocity.x * bulletSpeed, currentVelocity.y * bulletSpeed);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Target")
+        {
+            Target target = collision.GetComponent<Target>();
+            Debug.Log("Target HIT!");
+            switch (target.effect)
+            {
+                case Target.TargetEffect.ChangeTilemapVToH:
+                    target.ChangeTilemapVtoH();
+                    break;
+
+                case Target.TargetEffect.ChangeTilemapHToV:
+                    target.ChangeTilemapHtoV();
+                    break;
+
+                case Target.TargetEffect.ChangeTilemapHToH:
+                    target.ChangeTilemapHtoH();
+                    break;
+
+                case Target.TargetEffect.UnlockBottle:
+                    target.UnlockBottle();
+                    break;
+            }
+
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+        }
+        else if(collision.tag != "Player")
+            Destroy(gameObject);
     }
 }
