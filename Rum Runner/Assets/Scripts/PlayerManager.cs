@@ -10,6 +10,8 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class PlayerManager : MonoBehaviour
 {
+    public bool isFacingRight;
+
     [Header("Spawn Position")]
     [SerializeField] Vector3 spawnPos;
 
@@ -28,5 +30,17 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         usedDoubleJump = false;
+        isFacingRight = true;
+    }
+    private void Update()
+    {
+        if(!isFacingRight)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 }

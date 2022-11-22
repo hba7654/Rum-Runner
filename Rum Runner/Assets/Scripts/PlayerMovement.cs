@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     [SerializeField] float coyoteTime;
     private float coyoteTimeLeft;
-    [SerializeField] bool isFacingRight;
     private bool hasMoved;
     public bool isGrappling;
 
@@ -35,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         normalGravity = rb.gravityScale;
-        isFacingRight = true;
         hasMoved = false;
 
     }
@@ -106,6 +104,14 @@ public class PlayerMovement : MonoBehaviour
                     coyoteTimeLeft = 0;
                     canJump = false;
                 }
+            }
+            if(moveVector.x > 0)
+            {
+                playerManager.isFacingRight = true;
+            }
+            else if(moveVector.x < 0)
+            {
+                playerManager.isFacingRight= false;
             }
         }
 
