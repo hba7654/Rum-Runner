@@ -51,17 +51,24 @@ public class PlayerUtility : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Is Aiming: " + isAiming);
+        //Always update mouse position and direction if mouse is enabled
         if(usingMouse && !isGrappling)
         {
             mousePosition = GetMousePosition();
             mouseDirVector = GetMouseVector();
         }
-        if(isGrappling)
+    }
+
+    private void FixedUpdate()
+    {
+        //Handling grappling
+        if (isGrappling)
         {
+            //Begin grappling
             if (!startedGrappling)
             {
                 startedGrappling = true;
+                //Checks if grappling surface is within range
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, mouseDirVector, grappleLength, pMoveScript.groundLayer);
                 mousePosition = hit.point;
                 if (hit.collider != null)
@@ -70,12 +77,18 @@ public class PlayerUtility : MonoBehaviour
                     pMoveScript.isGrappling = true;
                 }
             }
-            if(allowGrappling)
+            //Proceed with grappling if possible
+            if (allowGrappling)
             {
+                //Draw the line
                 lineRenderer.enabled = true;
                 lineRenderer.SetPosition(0, transform.position);
                 lineRenderer.SetPosition(1, mousePosition);
+
+                //Set the velocity direction
                 pMoveScript.moveVector = mouseDirVector;
+
+                //Proximity handling, grappling gets disabled when player gets close to surface
                 Vector2 distance = new Vector2(transform.position.x - mousePosition.x, transform.position.y - mousePosition.y);
 
                 if (distance.magnitude <= 1)
@@ -98,8 +111,6 @@ public class PlayerUtility : MonoBehaviour
             //Mouse Controls
             if (context.control.displayName == "Position")
             {
-                mousePosition = GetMousePosition();
-                mouseDirVector = GetMouseVector();
                 isAiming = true;
                 usingMouse = true;
             }
@@ -109,80 +120,44 @@ public class PlayerUtility : MonoBehaviour
                 Debug.Log("Direction: " + mouseDirVector);
                 mouseDirVector = context.ReadValue<Vector2>();
 
-                // Deadzone
                 isAiming = true;
-                if (mouseDirVector.magnitude <= 0.25f)
-                    isAiming = false;
-
                 usingMouse = false;
             }
         }
-                if(context.canceled)
-                {
-                    isAiming = false;
-                }
+
+        if(context.canceled)
+        {
+            isAiming = false;
+        }
     }
 
     public void Fire(InputAction.CallbackContext context)
     {
+        //Can only shoot when game is going and player is aiming
         if (GameManager.hasStarted && context.started && isAiming)
         {
             soundManager.PlaySound("shoot");
-            //mousePosition = GetMousePosition();
             GameObject bulletClone;
             Vector2 bulletSpawnPosition = new Vector2(transform.position.x + 0.5f, transform.position.y);
             bulletClone = Instantiate(bullet, bulletSpawnPosition, transform.rotation);
             bulletScript = bulletClone.GetComponent<Bullet>();
-            //mouseDirVector = GetMouseVector();
             bulletScript.InitialMove(bulletSpeed, mouseDirVector);
         }
     }
 
-    //private void OnGrapple()
-    //{
-    //    mousePosition = GetMousePosition();
-    //    Debug.Log(mousePosition);
-
-    //}
-
-    // public void Grapple()
-    // {
-
-    //     mouseDirVector = GetMouseVector();
-    //     //distJoint.connectedAnchor = mousePosition;
-    //     //distJoint.enabled = true;
-    //     lineRenderer.enabled = true;
-
-    //     //if (distJoint.enabled)
-    //     //{
-    //     //    lineRenderer.SetPosition(1, transform.position);
-    //     //}
-
-    //     RaycastHit2D hit = Physics2D.Raycast(transform.position, mouseDirVector, grappleLength, pMoveScript.groundLayer);
-    //     if(hit.collider!= null)
-    //     {
-    //         if (mouseDirVector == Vector2.zero)
-    //             mouseDirVector = lastMouseDirVector.normalized;
-    //         //mousePosition = GetMousePosition();
-    //         GameObject bulletClone;
-    //         Vector2 bulletSpawnPosition = new Vector2(transform.position.x + 0.5f, transform.position.y);
-    //         bulletClone = Instantiate(bullet, bulletSpawnPosition, transform.rotation);
-    //         bulletScript = bulletClone.GetComponent<Bullet>();
-    //         //mouseDirVector = GetMouseVector();
-    //         bulletScript.InitialMove(bulletSpeed, mouseDirVector);
-    //     }
-    // }
-
 
     public void Grapple(InputAction.CallbackContext context)
     {
+        //Can only grapple when game is going and player is aiming
         if (GameManager.hasStarted && isAiming)
         {
+            //On input start, initiate grapple
             if (context.started)
             {
                 isGrappling = true;
             }
             
+            //On input end, reset all variables to do with grapple
             else if (context.canceled)
             {
                 isGrappling = false;
@@ -195,15 +170,15 @@ public class PlayerUtility : MonoBehaviour
 
     }
 
+    //Gets the Aiming direction for mouse
     public Vector2 GetMouseVector()
     {
 
         Vector3 playerPos = transform.position;
-        //Vector3 mousePos = Mouse.current.position.ReadValue();
-        //Vector3 Worldpos = Camera.main.ScreenToWorldPoint(mousePos);
         return new Vector2(mousePosition.x - playerPos.x, mousePosition.y - playerPos.y).normalized;
     }
 
+    //get mouse position on the screen
     public Vector2 GetMousePosition()
     {
         Vector3 playerPos = transform.position;
