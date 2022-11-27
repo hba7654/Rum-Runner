@@ -133,7 +133,6 @@ MonoBehaviour:
   fallingGravity: 4
   moveSpeed: 8
   coyoteTime: 0.15
-  isFacingRight: 0
   isGrappling: 0
   isGrounded: 0
   groundSpot: {fileID: 4228221075829623902}
@@ -184,7 +183,7 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -33466916853748560}
+      - m_Target: {fileID: 7129578202939421608}
         m_TargetAssemblyTypeName: PlayerUtility, Assembly-CSharp
         m_MethodName: Look
         m_Mode: 0
@@ -288,10 +287,10 @@ MonoBehaviour:
     m_ActionName: Player/Restart[/Keyboard/r]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -33466916853748560}
+      - m_Target: {fileID: 7129578202939421608}
         m_TargetAssemblyTypeName: PlayerUtility, Assembly-CSharp
         m_MethodName: Fire
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -304,7 +303,7 @@ MonoBehaviour:
     m_ActionName: Player/Fire[/Mouse/leftButton,/DualSenseGamepadHID/rightTrigger]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -33466916853748560}
+      - m_Target: {fileID: 7129578202939421608}
         m_TargetAssemblyTypeName: PlayerUtility, Assembly-CSharp
         m_MethodName: Grapple
         m_Mode: 0
@@ -335,6 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab230b4d345a3e94eb72c0b83df5e8a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFacingRight: 0
   spawnPos: {x: 0, y: 0, z: 0}
   hasShoes: 1
   usedDoubleJump: 0

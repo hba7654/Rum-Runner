@@ -41,9 +41,15 @@ public class PlayerMovement : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         if (context.started)
+        {
             playerSound.PlaySound("run");
+            isMoving = true;
+        }
         else if (context.canceled)
+        {
             playerSound.StopSound("run");
+            isMoving = false;
+        }
         if (!hasMoved)
         {
             hasMoved = true;
@@ -89,6 +95,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!GameManager.isPaused)
         {
+            if(!isMoving && !isGrappling && isGrounded)
+            {
+                moveVector = Vector2.zero;
+            }
+
             isGrounded = Physics2D.OverlapCircle(groundSpot.position, 0.1f, groundLayer);
             if (isGrounded)
             {

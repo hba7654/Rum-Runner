@@ -2444,7 +2444,7 @@ PrefabInstance:
     - target: {fileID: 701222696259178936, guid: 0a58c9746fbe693469c5faa9ff932824, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1846642075}
     - target: {fileID: 701222696259178936, guid: 0a58c9746fbe693469c5faa9ff932824, type: 3}
       propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2972,6 +2972,17 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &1846642075 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7129578202939421608, guid: 0a58c9746fbe693469c5faa9ff932824, type: 3}
+  m_PrefabInstance: {fileID: 941268038}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489762265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1225ee251f2eaba4383b7506de92194c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2052129215
 GameObject:
   m_ObjectHideFlags: 0
