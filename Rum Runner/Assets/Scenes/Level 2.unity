@@ -1484,9 +1484,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6704897257126512705, guid: 76e311e359a389549ba27688093adcc0, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 0.5660378
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704897257126512705, guid: 76e311e359a389549ba27688093adcc0, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 0.5660378
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704897257126512705, guid: 76e311e359a389549ba27688093adcc0, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 0.5660378
+      objectReference: {fileID: 0}
     - target: {fileID: 6704897257133435692, guid: 76e311e359a389549ba27688093adcc0, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704897258143961246, guid: 76e311e359a389549ba27688093adcc0, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 0.5660378
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704897258143961246, guid: 76e311e359a389549ba27688093adcc0, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 0.5660378
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704897258143961246, guid: 76e311e359a389549ba27688093adcc0, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 0.5660378
       objectReference: {fileID: 0}
     - target: {fileID: 6704897258905397328, guid: 76e311e359a389549ba27688093adcc0, type: 3}
       propertyPath: orthographic size
@@ -1539,6 +1563,18 @@ PrefabInstance:
     - target: {fileID: 6704897258905397330, guid: 76e311e359a389549ba27688093adcc0, type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704897258911691467, guid: 76e311e359a389549ba27688093adcc0, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 0.5660378
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704897258911691467, guid: 76e311e359a389549ba27688093adcc0, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 0.5660378
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704897258911691467, guid: 76e311e359a389549ba27688093adcc0, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 0.5660378
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76e311e359a389549ba27688093adcc0, type: 3}
