@@ -13,15 +13,14 @@ GameObject:
   - component: {fileID: 701222696259178938}
   - component: {fileID: 701222696259178937}
   - component: {fileID: 701222696259178936}
-  - component: {fileID: 701222696259178939}
   - component: {fileID: 7674148722719694860}
   - component: {fileID: -6221311582152563073}
   - component: {fileID: 4661473400583280012}
   - component: {fileID: -5842684249135460420}
-  - component: {fileID: -33466916853748560}
+  - component: {fileID: 7129578202939421608}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +32,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701222696259178933}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -141,6 +140,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  playerSound: {fileID: 0}
 --- !u!114 &701222696259178936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,12 +257,12 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Pause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -271,7 +271,19 @@ MonoBehaviour:
     m_ActionId: 0eac5160-cb27-426e-baaa-876b71e52c8a
     m_ActionName: Player/Pause[/Keyboard/escape]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 24079a87-d402-4b7d-8353-3703b33d609c
     m_ActionName: Player/Restart[/Keyboard/r]
   - m_PersistentCalls:
@@ -311,22 +323,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!70 &701222696259178939
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 701222696259178933}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
-  m_Direction: 0
 --- !u!114 &7674148722719694860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,10 +336,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPos: {x: 0, y: 0, z: 0}
-  hasShoes: 0
+  hasShoes: 1
   usedDoubleJump: 0
   doubleJumpShoe: {fileID: 0}
   hasPistol: 0
+  hasGrapple: 0
 --- !u!114 &-6221311582152563073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b727637a06f09534ca9cf129875d8c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSound: {fileID: 0}
 --- !u!61 &4661473400583280012
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -365,7 +363,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 701222696259178933}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 4ee9b62840b16b94baffb9f437d4313a, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -481,7 +479,7 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &-33466916853748560
+--- !u!114 &7129578202939421608
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -495,7 +493,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 6457276483983586784, guid: e761f490d22cb074189c97365fd96367, type: 3}
   mainCam: {fileID: 0}
-  bulletSpeed: 10
+  soundManager: {fileID: 0}
+  bulletSpeed: 20
   lineRenderer: {fileID: 0}
   grappleLength: 10
 --- !u!1 &9077421568889326758

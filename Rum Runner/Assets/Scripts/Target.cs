@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 
 public class Target : MonoBehaviour
 {
-    private enum TargetEffect
+    public enum TargetEffect
     {
         ChangeTilemapVToH, //Deleting vertical tiles and adding horizontal ones (like dropping a bridge)
         ChangeTilemapHToH, //Deleting horizontal tiles and adding horizontal ones (like moving a horizontal platform)
@@ -14,7 +14,7 @@ public class Target : MonoBehaviour
         UnlockBottle //A bottle will activate somewhere in the level 
     }
 
-    [SerializeField] private TargetEffect effect;
+    [SerializeField] public TargetEffect effect;
 
     [Header("Change Tilemap")]
     [SerializeField] private Tilemap tilemap;
@@ -41,36 +41,7 @@ public class Target : MonoBehaviour
         bottle.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "Bullet")
-        {
-            Debug.Log("Target HIT!");
-            switch (effect)
-            {
-                case TargetEffect.ChangeTilemapVToH:
-                    ChangeTilemapVtoH();
-                    break;
-                    
-                case TargetEffect.ChangeTilemapHToV:
-                    ChangeTilemapHtoV();
-                    break;
-
-                case TargetEffect.ChangeTilemapHToH:
-                    ChangeTilemapHtoH();
-                    break;
-
-                case TargetEffect.UnlockBottle:
-                    UnlockBottle();
-                    break;
-            }
-
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-        }
-    }
-
-    private void ChangeTilemapHtoV()
+    public void ChangeTilemapHtoV()
     {
         Debug.Log("changing tiles h to v");
         //Delete horizontal tiles
@@ -110,7 +81,7 @@ public class Target : MonoBehaviour
         }
     }
 
-    private void ChangeTilemapVtoH()
+    public void ChangeTilemapVtoH()
     {
         Debug.Log("changing tiles v to h");
         //Delete vertical tiles
@@ -150,7 +121,7 @@ public class Target : MonoBehaviour
         }
     }
 
-    private void ChangeTilemapHtoH()
+    public void ChangeTilemapHtoH()
     {
         Debug.Log("changing tiles h to h");
         //Delete first set of tiles
@@ -190,7 +161,7 @@ public class Target : MonoBehaviour
         }
     }
 
-    private void UnlockBottle()
+    public void UnlockBottle()
     {
         bottle.SetActive(true);
     }

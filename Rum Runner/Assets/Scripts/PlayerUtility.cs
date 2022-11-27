@@ -15,6 +15,7 @@ public class PlayerUtility : MonoBehaviour
     private Vector2 mousePosition;
     private Vector2 mouseDirVector;
     private Vector2 lastMouseDirVector;
+    public SoundManager soundManager;
 
 
     [Header("Shooting Variables")]
@@ -33,7 +34,6 @@ public class PlayerUtility : MonoBehaviour
     {
         playerManager = GetComponent<PlayerManager>();
 
-        bulletSpeed = 5f;
         lineRenderer = GetComponent<LineRenderer>();
         pMoveScript = GetComponent<PlayerMovement>();
 
@@ -100,18 +100,50 @@ public class PlayerUtility : MonoBehaviour
     public void Fire()
     {
         if (GameManager.hasStarted)
-        {
-            if (mouseDirVector == Vector2.zero)
-                mouseDirVector = lastMouseDirVector.normalized;
-            //mousePosition = GetMousePosition();
-            GameObject bulletClone;
-            Vector2 bulletSpawnPosition = new Vector2(transform.position.x + 0.5f, transform.position.y);
-            bulletClone = Instantiate(bullet, bulletSpawnPosition, transform.rotation);
-            bulletScript = bulletClone.GetComponent<Bullet>();
-            //mouseDirVector = GetMouseVector();
-            bulletScript.InitialMove(bulletSpeed, mouseDirVector);
-        }
+        soundManager.PlaySound("shoot");
+        mousePosition = GetMousePosition();
+        GameObject bulletClone;
+        Vector2 bulletSpawnPosition = new Vector2(transform.position.x + 0.5f, transform.position.y);
+        bulletClone = Instantiate(bullet, bulletSpawnPosition, transform.rotation);
+        bulletScript = bulletClone.GetComponent<Bullet>();
+        mouseDirVector = GetMouseVector();
+        bulletScript.InitialMove(bulletSpeed, mouseDirVector);
     }
+
+    private void OnGrapple()
+    {
+        mousePosition = GetMousePosition();
+        Debug.Log(mousePosition);
+
+    }
+
+    // public void Grapple()
+    // {
+
+    //     mouseDirVector = GetMouseVector();
+    //     //distJoint.connectedAnchor = mousePosition;
+    //     //distJoint.enabled = true;
+    //     lineRenderer.enabled = true;
+
+    //     //if (distJoint.enabled)
+    //     //{
+    //     //    lineRenderer.SetPosition(1, transform.position);
+    //     //}
+
+    //     RaycastHit2D hit = Physics2D.Raycast(transform.position, mouseDirVector, grappleLength, pMoveScript.groundLayer);
+    //     if(hit.collider!= null)
+    //     {
+    //         if (mouseDirVector == Vector2.zero)
+    //             mouseDirVector = lastMouseDirVector.normalized;
+    //         //mousePosition = GetMousePosition();
+    //         GameObject bulletClone;
+    //         Vector2 bulletSpawnPosition = new Vector2(transform.position.x + 0.5f, transform.position.y);
+    //         bulletClone = Instantiate(bullet, bulletSpawnPosition, transform.rotation);
+    //         bulletScript = bulletClone.GetComponent<Bullet>();
+    //         //mouseDirVector = GetMouseVector();
+    //         bulletScript.InitialMove(bulletSpeed, mouseDirVector);
+    //     }
+    // }
 
 
     public void Grapple(InputAction.CallbackContext context)

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine;
 
-public class InstructionsSceneManager : MonoBehaviour
+public class SettingScreenManager : MonoBehaviour
 {
-
+    public void ClearHighScore()
+    {
+        PlayerPrefs.DeleteAll();
+    }
     public void Quit()
     {
         SceneManager.LoadScene("TitleScreen");

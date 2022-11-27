@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     [SerializeField] float coyoteTime;
     private float coyoteTimeLeft;
-    [SerializeField] bool isFacingRight;
     private bool hasMoved;
     private bool isMoving;
     public bool isGrappling;
@@ -27,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundSpot;
     public LayerMask groundLayer;
 
-
+    public SoundManager playerSound;
     private float normalGravity;
 
     private void Awake()
@@ -36,14 +35,16 @@ public class PlayerMovement : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         normalGravity = rb.gravityScale;
-        isFacingRight = true;
         hasMoved = false;
-        isMoving = false;
     }
 
     public void Move(InputAction.CallbackContext context)
     {
-        if(!hasMoved)
+        if (context.started)
+            playerSound.PlaySound("run");
+        else if (context.canceled)
+            playerSound.StopSound("run");
+        if (!hasMoved)
         {
             hasMoved = true;
             GameManager.hasStarted = true;
@@ -51,15 +52,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isGrappling)
         {
             moveVector = context.ReadValue<Vector2>();
-            isMoving = true;
-            //if(context.canceled)
-            //{
-            //    isMoving = false;
-            //}
         }
-        else 
-            isMoving = false;
-
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -71,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.gravityScale = jumpingGravity;
                 rb.velocity = new Vector2(rb.velocity.x, jumpDistance);
+                playerSound.PlaySound("jump");
             }
             else if (!canJump && playerManager.hasShoes)
             {
@@ -79,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
                     rb.gravityScale = jumpingGravity;
                     rb.velocity = new Vector2(rb.velocity.x, jumpDistance);
                     playerManager.usedDoubleJump =true;
+                    playerSound.PlaySound("jump");
                 }
             }
             
@@ -110,9 +105,13 @@ public class PlayerMovement : MonoBehaviour
                     canJump = false;
                 }
             }
-            if(!isMoving && !isGrappling)
+            if(moveVector.x > 0)
             {
-                moveVector = Vector2.zero;
+                playerManager.isFacingRight = true;
+            }
+            else if(moveVector.x < 0)
+            {
+                playerManager.isFacingRight= false;
             }
         }
 

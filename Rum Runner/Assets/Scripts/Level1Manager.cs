@@ -24,11 +24,22 @@ public class Level1Manager : MonoBehaviour
         levelScore = 0;
         exit.SetActive(false);
         GameManager.level = 1;
+        if (!PlayerPrefs.HasKey("level1HighScore")) {
+            PlayerPrefs.SetFloat("level1HighScore", 1000);
+        }
+        
+        Debug.Log("stored score" + PlayerPrefs.GetFloat("level1HighScore"));
+        fastestTime = PlayerPrefs.GetFloat("level1HighScore");
+
+
 
         startingTime = GameManager.totalTime;
         startingFastestTime = GameManager.totalFastestTime;
         startingScore = GameManager.totalRumBottles;
         GameManager.requiredScore = requiredScore;
+
+        GameManager.totalFastestTime = fastestTime;
+
     }
 
     // Update is called once per frame
@@ -56,6 +67,8 @@ public class Level1Manager : MonoBehaviour
         if (finalTime <= fastestTime)
         {
             fastestTime = finalTime;
+            PlayerPrefs.SetFloat("level1HighScore", fastestTime);
+            Debug.Log("updated score" + PlayerPrefs.GetFloat("level1HighScore"));
         }
 
         SceneManager.LoadScene("WinScreen");

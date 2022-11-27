@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,9 +15,9 @@ public class GameManager : MonoBehaviour
     public static int level;
 
     public static float timer;
-    [SerializeField] Text timeText;
-    [SerializeField] Text scoreText;
-    [SerializeField] Text fastestTimeText;
+    [SerializeField] TMP_Text timeText;
+    [SerializeField] TMP_Text scoreText;
+    [SerializeField] TMP_Text fastestTimeText;
 
 
     public static bool isPaused;
@@ -35,11 +36,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        fastestTimeText.text = ("Fastest Time: " + totalFastestTime.ToString("F2") + "s");
         if (!isPaused && hasStarted)
         {
             timer += Time.deltaTime;
             timeText.text = ("Time: " + timer.ToString("F2") + "s");
-            scoreText.text = ("Bottles Collected: " + rumBottles.ToString() + "/" + requiredScore.ToString());
+            scoreText.text = ("<sprite=0>x" + rumBottles.ToString() + "/" + requiredScore.ToString());
 
         }
         pauseScreen.SetActive(isPaused);

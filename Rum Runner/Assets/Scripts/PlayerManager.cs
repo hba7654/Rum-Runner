@@ -10,6 +10,8 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class PlayerManager : MonoBehaviour
 {
+    public bool isFacingRight;
+
     [Header("Spawn Position")]
     [SerializeField] Vector3 spawnPos;
 
@@ -21,9 +23,24 @@ public class PlayerManager : MonoBehaviour
     [Header("Pistol")]
     public bool hasPistol;
 
+    [Header("Grapple")]
+    public bool hasGrapple;
+
     // Start is called before the first frame update
     void Start()
     {
         usedDoubleJump = false;
+        isFacingRight = true;
+    }
+    private void Update()
+    {
+        if(!isFacingRight)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 }
