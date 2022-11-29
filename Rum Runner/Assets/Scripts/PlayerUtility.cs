@@ -132,8 +132,9 @@ public class PlayerUtility : MonoBehaviour
             //Controller Controls
             else if (context.control.displayName == "Right Stick")
             {
-                Debug.Log("Direction: " + mouseDirVector);
                 mouseDirVector = context.ReadValue<Vector2>();
+                mouseDirVector.x = Mathf.Round(mouseDirVector.x * 50) / 50;
+                mouseDirVector.y = Mathf.Round(mouseDirVector.y * 50) / 50;
 
                 isAiming = true;
                 usingMouse = false;
@@ -166,7 +167,7 @@ public class PlayerUtility : MonoBehaviour
     public void Grapple(InputAction.CallbackContext context)
     {
         //Can only grapple when game is going and player is aiming
-        if (GameManager.hasStarted && isAiming)
+        if (GameManager.hasStarted && isAiming && playerManager.hasGrapple)
         {
             //On input start, initiate grapple
             if (context.started)

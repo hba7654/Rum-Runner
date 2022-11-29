@@ -30,6 +30,14 @@ public class PlayerCollision : MonoBehaviour
 
             playerSound.PlaySound("pickup");
         }
+        else if (other.tag == "Grapple")
+        {
+            Debug.Log("Grappling hook picked up!");
+            other.gameObject.SetActive(false);
+            playerManager.hasGrapple = true;
+
+            playerSound.PlaySound("pickup");
+        }
         else if (other.tag == "Collectable")
         {
             Debug.Log("Collectable picked up!");

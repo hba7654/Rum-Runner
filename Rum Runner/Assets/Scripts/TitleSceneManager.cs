@@ -31,4 +31,9 @@ public class TitleSceneManager : MonoBehaviour
     {
         SceneManager.LoadScene("Settings");
     }
+
+    public void Credits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
 }
