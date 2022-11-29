@@ -335,7 +335,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Goal:\n  - Collect the rum bottles as fast as you can. For every extra
     bottle \n     collected your final time will decrease by 0.5s!\nMovement:\n 
-    - Left & Right: A & D Keys, or Left Stick or dpad\n  - Jump: Space or W Key,
+    - Left & Right: A & D Keys, or Left Stick or dpad\n  - Jump: Space Bar or W Key,
     or Right Bumper\n  - Pause: ESC Key or Start button\n  - Restart: R Key or Left
     Bumper\nGadgets:\n  - Double Jump: Collect the double jump shoes\n  - Aiming:
     Mouse position or Right Stick\n  - Shoot Pistol: Left Click or Right Trigger\n 
