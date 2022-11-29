@@ -134,7 +134,7 @@ public class PlayerUtility : MonoBehaviour
     public void Fire(InputAction.CallbackContext context)
     {
         //Can only shoot when game is going and player is aiming
-        if (GameManager.hasStarted && context.started && isAiming)
+        if (GameManager.hasStarted && context.started && isAiming && playerManager.hasPistol)
         {
             soundManager.PlaySound("shoot");
             GameObject bulletClone;
