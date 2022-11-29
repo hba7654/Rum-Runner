@@ -465,6 +465,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &333270267 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8802906244536695708, guid: 42bdc0dcd63a311429ebb5493ee5e66e, type: 3}
+  m_PrefabInstance: {fileID: 1975379795}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &438462458
 GameObject:
   m_ObjectHideFlags: 0
@@ -4270,6 +4275,7 @@ MonoBehaviour:
   - {fileID: 1764536906}
   - {fileID: 89584969}
   - {fileID: 1050469586}
+  pistol: {fileID: 333270267}
   levelScore: 0
 --- !u!1001 &1529762421
 PrefabInstance:
