@@ -578,8 +578,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a64299b9380b5a54c8ed821cdceb1501, type: 3}
   - {fileID: 8300000, guid: c0802adab51b7e54da243c53b9238eba, type: 3}
   bottle: {fileID: 8300000, guid: ba2d4e426887f0746910bf33072ba404, type: 3}
-  pickup: {fileID: 8300000, guid: 083eb728fe3467b428d67817af498ea9, type: 3}
-  shoot: {fileID: 8300000, guid: 1b89360b5ee645549b6a4a5d23e88b23, type: 3}
+  pickup: {fileID: 8300000, guid: c76f44eb54992c44883385863d6b94ef, type: 3}
+  shoot: {fileID: 8300000, guid: 11aa92e5c3e97f54680c43d6bbd2e64f, type: 3}
 --- !u!82 &2092906367673941674
 AudioSource:
   m_ObjectHideFlags: 0
