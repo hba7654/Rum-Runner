@@ -333,11 +333,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Goal:\n  - Collect the minimum numbers of rum bottles as fast as you can!\nMovement:\n 
-    - Use WASD for an optimal game experience or the Arrow keys if \n    need to
-    move left & right.\n  - Use space to jump\n  - Use ESC to pause and R to restart\nGadgets:\n 
-    - Enable double jump by collecting the double jump shoes\n  - Use the mouse position
-    to aim the pistol and left click to shoot"
+  m_text: "Goal:\n  - Collect the rum bottles as fast as you can. For every extra
+    bottle \n     collected your final time will decrease by 0.5s!\nMovement:\n 
+    - Left & Right: A & D Keys, or Left Stick or dpad\n  - Jump: Space Bar or W Key,
+    or Right Bumper\n  - Pause: ESC Key or Start button\n  - Restart: R Key or Left
+    Bumper\nGadgets:\n  - Double Jump: Collect the double jump shoes\n  - Aiming:
+    Mouse position or Right Stick\n  - Shoot Pistol: Left Click or Right Trigger\n 
+    - Shoot Grapple Hook: Right Click or Left Trigger"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 72d24f7312483844897f7adffd6820ba, type: 2}
   m_sharedMaterial: {fileID: 441208918113507900, guid: 72d24f7312483844897f7adffd6820ba, type: 2}
@@ -606,7 +608,7 @@ GameObject:
   - component: {fileID: 533990108}
   - component: {fileID: 533990107}
   m_Layer: 5
-  m_Name: Quit Bttn
+  m_Name: Back Bttn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -655,9 +657,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 1}
+    m_SelectedColor: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -866,9 +868,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 1}
+    m_SelectedColor: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -949,6 +951,7 @@ GameObject:
   - component: {fileID: 931786067}
   - component: {fileID: 931786069}
   - component: {fileID: 931786068}
+  - component: {fileID: 931786070}
   m_Layer: 5
   m_Name: Start text
   m_TagString: Untagged
@@ -1018,6 +1021,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931786066}
   m_CullTransparentMesh: 1
+--- !u!114 &931786070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931786066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1034759300
 GameObject:
   m_ObjectHideFlags: 0
@@ -1301,7 +1319,7 @@ MonoBehaviour:
   m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_DeselectOnBackgroundClick: 1
+  m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
 --- !u!1 &1686208157
 GameObject:
@@ -1391,8 +1409,9 @@ GameObject:
   - component: {fileID: 1889780743}
   - component: {fileID: 1889780745}
   - component: {fileID: 1889780744}
+  - component: {fileID: 1889780746}
   m_Layer: 5
-  m_Name: Quit text
+  m_Name: Back text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1451,7 +1470,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Quit
+  m_Text: Back
 --- !u!222 &1889780745
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1460,3 +1479,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889780742}
   m_CullTransparentMesh: 1
+--- !u!114 &1889780746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889780742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
