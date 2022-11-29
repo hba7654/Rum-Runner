@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         if (!GameManager.hasStarted)
         {
             GameManager.hasStarted = true;
+            moveVector = Vector2.zero;
         }
         if (!isGrappling)
         {

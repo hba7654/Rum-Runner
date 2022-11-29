@@ -10,6 +10,7 @@ public class PlayerUtility : MonoBehaviour
     private Bullet bulletScript;
     public Camera mainCam;
     private PlayerManager playerManager;
+    private GameObject crosshair;
 
     [Header("General Variables")]
     private Vector2 mousePosition;
@@ -33,6 +34,7 @@ public class PlayerUtility : MonoBehaviour
     public void Awake()
     {
         playerManager = GetComponent<PlayerManager>();
+        crosshair = playerManager.transform.GetChild(1).gameObject;
 
         lineRenderer = GetComponent<LineRenderer>();
         pMoveScript = GetComponent<PlayerMovement>();
@@ -52,10 +54,22 @@ public class PlayerUtility : MonoBehaviour
     private void Update()
     {
         //Always update mouse position and direction if mouse is enabled
-        if(usingMouse && !isGrappling)
+        if(usingMouse)
         {
-            mousePosition = GetMousePosition();
-            mouseDirVector = GetMouseVector();
+            if (!isGrappling)
+            {
+                mousePosition = GetMousePosition();
+                mouseDirVector = GetMouseVector();
+            }
+            crosshair.transform.position = mousePosition;
+        }
+        if(!usingMouse && isAiming)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, mouseDirVector);
+            if(hit.collider != null)
+            {
+                crosshair.transform.position = hit.point;
+            }
         }
     }
 
@@ -70,9 +84,9 @@ public class PlayerUtility : MonoBehaviour
                 startedGrappling = true;
                 //Checks if grappling surface is within range
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, mouseDirVector, grappleLength, pMoveScript.groundLayer);
-                mousePosition = hit.point;
                 if (hit.collider != null)
                 {
+                    mousePosition = hit.point;
                     allowGrappling = true;
                     pMoveScript.isGrappling = true;
                 }
@@ -113,6 +127,7 @@ public class PlayerUtility : MonoBehaviour
             {
                 isAiming = true;
                 usingMouse = true;
+                crosshair.SetActive(true);
             }
             //Controller Controls
             else if (context.control.displayName == "Right Stick")
@@ -122,12 +137,14 @@ public class PlayerUtility : MonoBehaviour
 
                 isAiming = true;
                 usingMouse = false;
+                crosshair.SetActive(true);
             }
         }
 
         if(context.canceled)
         {
             isAiming = false;
+            crosshair.SetActive(false);
         }
     }
 
