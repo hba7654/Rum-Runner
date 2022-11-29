@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Level1Manager : MonoBehaviour
 {
+    public Vector2 startPos;
     public static float finalTime;
     public static float fastestTime;
     public static int finalRumBottles;
@@ -14,24 +15,34 @@ public class Level1Manager : MonoBehaviour
     private float startingFastestTime;
     private int startingScore;
 
+    [SerializeField] PlayerManager player;
     [SerializeField] GameObject exit;
+    [SerializeField] private GameObject[] bottles;
     [SerializeField] private int requiredScore;
+    [SerializeField] GameObject shoes;
 
     public int levelScore;
     // Start is called before the first frame update
     void Start()
     {
+        Init();
+    }
+
+    void Init()
+    {
+        startPos = player.transform.position;
+
         levelScore = 0;
         exit.SetActive(false);
         GameManager.level = 1;
-        if (!PlayerPrefs.HasKey("level1HighScore")) {
+
+        if (!PlayerPrefs.HasKey("level1HighScore"))
+        {
             PlayerPrefs.SetFloat("level1HighScore", 1000);
         }
-        
-        Debug.Log("stored score" + PlayerPrefs.GetFloat("level1HighScore"));
+
+        Debug.Log("stored score 1 " + PlayerPrefs.GetFloat("level1HighScore"));
         fastestTime = PlayerPrefs.GetFloat("level1HighScore");
-
-
 
         startingTime = GameManager.totalTime;
         startingFastestTime = GameManager.totalFastestTime;
@@ -39,7 +50,6 @@ public class Level1Manager : MonoBehaviour
         GameManager.requiredScore = requiredScore;
 
         GameManager.totalFastestTime = fastestTime;
-
     }
 
     // Update is called once per frame
@@ -52,9 +62,21 @@ public class Level1Manager : MonoBehaviour
         }
     }
 
-    public static void Die()
+    public void Die()
     {
-        SceneManager.LoadScene("Level 1-1");
+        player.transform.position = startPos;
+        GameManager.timer = 0;
+        for (int i = 0; i < bottles.Length; i++)
+        {
+            bottles[i].SetActive(true);
+        }
+        GameManager.isPaused = false;
+        GameManager.hasStarted = false;
+        GameManager.rumBottles = 0;
+        Init();
+
+        player.hasShoes = false;
+        shoes.SetActive(true);
     }
 
     public static void Win()

@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     [SerializeField] float coyoteTime;
     private float coyoteTimeLeft;
-    private bool hasMoved;
     private bool isMoving;
     public bool isGrappling;
 
@@ -35,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         normalGravity = rb.gravityScale;
-        hasMoved = false;
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -50,9 +48,8 @@ public class PlayerMovement : MonoBehaviour
             playerSound.StopSound("run");
             isMoving = false;
         }
-        if (!hasMoved)
+        if (!GameManager.hasStarted)
         {
-            hasMoved = true;
             GameManager.hasStarted = true;
         }
         if (!isGrappling)

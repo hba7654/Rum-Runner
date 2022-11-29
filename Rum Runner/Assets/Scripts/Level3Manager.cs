@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Level3Manager : MonoBehaviour
 {
+    public  Vector2 startPos;
     public static float finalTime;
     public static float fastestTime;
     public static int finalRumBottles;
@@ -14,13 +15,24 @@ public class Level3Manager : MonoBehaviour
     private float startingFastestTime;
     private int startingScore;
 
+    [SerializeField] PlayerManager player;
     [SerializeField] GameObject exit;
     [SerializeField] private int requiredScore;
+    [SerializeField] private GameObject[] bottles;
+    //[SerializeField] GameObject grapple;
+
 
     public int levelScore;
     // Start is called before the first frame update
     void Start()
     {
+        Init();
+    }
+
+    void Init()
+    {
+        startPos = player.transform.position;
+
         levelScore = 0;
         exit.SetActive(false);
         GameManager.level = 3;
@@ -39,7 +51,6 @@ public class Level3Manager : MonoBehaviour
         GameManager.requiredScore = requiredScore;
 
         GameManager.totalFastestTime = fastestTime;
-
     }
 
     // Update is called once per frame
@@ -52,9 +63,20 @@ public class Level3Manager : MonoBehaviour
         }
     }
 
-    public static void Die()
+    public void Die()
     {
-        SceneManager.LoadScene("Level 3");
+        player.transform.position = startPos;
+        GameManager.timer = 0;
+        for(int i = 0; i < bottles.Length; i++)
+        {
+            bottles[i].SetActive(true);
+        }
+        GameManager.isPaused = false;
+        GameManager.hasStarted = false;
+        GameManager.rumBottles = 0;
+        Init();
+
+        //grapple.SetActive(true);
     }
 
     public static void Win()
