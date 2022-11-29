@@ -574,6 +574,9 @@ MonoBehaviour:
   dies:
   - {fileID: 8300000, guid: e32d3c6bf6a07f347a56e7e8d21cab23, type: 3}
   - {fileID: 8300000, guid: c5d4146531a4e85478b1f0c72d76d6ea, type: 3}
+  darts:
+  - {fileID: 8300000, guid: a64299b9380b5a54c8ed821cdceb1501, type: 3}
+  - {fileID: 8300000, guid: c0802adab51b7e54da243c53b9238eba, type: 3}
   bottle: {fileID: 8300000, guid: ba2d4e426887f0746910bf33072ba404, type: 3}
   pickup: {fileID: 8300000, guid: 083eb728fe3467b428d67817af498ea9, type: 3}
   shoot: {fileID: 8300000, guid: 1b89360b5ee645549b6a4a5d23e88b23, type: 3}

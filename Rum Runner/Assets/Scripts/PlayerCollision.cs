@@ -51,6 +51,7 @@ public class PlayerCollision : MonoBehaviour
         }
         else if (other.tag == "Trigger")
         {
+            playerSound.PlaySound("dart");
             Debug.Log("Shoot dart!");
             other.transform.parent.GetComponent<DartTrap>().isTriggered = true;
         }

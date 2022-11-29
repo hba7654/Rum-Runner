@@ -3262,7 +3262,7 @@ PrefabInstance:
     - target: {fileID: -6221311582152563073, guid: 0a58c9746fbe693469c5faa9ff932824, type: 3}
       propertyPath: playerSound
       value: 
-      objectReference: {fileID: 4447236449571404875, guid: 7ab6963de74bfbd40a3021c0c43cffdb, type: 3}
+      objectReference: {fileID: 507971763}
     - target: {fileID: 701222696259178933, guid: 0a58c9746fbe693469c5faa9ff932824, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3566,7 +3566,7 @@ PrefabInstance:
     - target: {fileID: 701222696259178937, guid: 0a58c9746fbe693469c5faa9ff932824, type: 3}
       propertyPath: playerSound
       value: 
-      objectReference: {fileID: 4447236449571404875, guid: 7ab6963de74bfbd40a3021c0c43cffdb, type: 3}
+      objectReference: {fileID: 507971763}
     - target: {fileID: 701222696259178937, guid: 0a58c9746fbe693469c5faa9ff932824, type: 3}
       propertyPath: jumpDistance
       value: 10

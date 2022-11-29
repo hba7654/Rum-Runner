@@ -9,7 +9,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip[] jumps;
     [SerializeField] AudioSource run;
     [SerializeField] AudioClip[] dies;
-    //[SerializeField] AudioSource[] darts;
+    [SerializeField] AudioClip[] darts;
     [SerializeField] AudioClip bottle;
     [SerializeField] AudioClip pickup;
     [SerializeField] AudioClip shoot;
@@ -35,8 +35,9 @@ public class SoundManager : MonoBehaviour
                 Debug.Log("DIE");
                 audioSource.PlayOneShot(dies[Random.Range(0, dies.Length)]);
                 break;
-            //case "dart":
-            //    break;
+            case "dart":
+                audioSource.PlayOneShot(darts[Random.Range(0, darts.Length)]);
+                break;
             case "bottle":
                 Debug.Log("BOTTLE");
                 audioSource.PlayOneShot(bottle);
