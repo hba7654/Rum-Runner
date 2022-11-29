@@ -166,7 +166,7 @@ public class PlayerUtility : MonoBehaviour
     public void Grapple(InputAction.CallbackContext context)
     {
         //Can only grapple when game is going and player is aiming
-        if (GameManager.hasStarted && isAiming)
+        if (GameManager.hasStarted && isAiming && playerManager.hasGrapple)
         {
             //On input start, initiate grapple
             if (context.started)

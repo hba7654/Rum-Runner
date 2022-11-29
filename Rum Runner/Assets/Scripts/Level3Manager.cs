@@ -19,7 +19,7 @@ public class Level3Manager : MonoBehaviour
     [SerializeField] GameObject exit;
     [SerializeField] private int requiredScore;
     [SerializeField] private GameObject[] bottles;
-    //[SerializeField] GameObject grapple;
+    [SerializeField] GameObject grapple;
 
 
     public int levelScore;
@@ -76,7 +76,8 @@ public class Level3Manager : MonoBehaviour
         GameManager.rumBottles = 0;
         Init();
 
-        //grapple.SetActive(true);
+        player.hasGrapple = false;
+        grapple.SetActive(true);
     }
 
     public static void Win()
