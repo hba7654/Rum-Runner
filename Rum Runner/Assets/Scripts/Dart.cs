@@ -28,35 +28,9 @@ public class Dart : MonoBehaviour
         rb.velocity = new Vector2(currentVelocity.x * dartSpeed, currentVelocity.y * dartSpeed);
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.tag == "Target")
-    //    {
-    //        Target target = collision.GetComponent<Target>();
-    //        Debug.Log("Target HIT!");
-    //        switch (target.effect)
-    //        {
-    //            case Target.TargetEffect.ChangeTilemapVToH:
-    //                target.ChangeTilemapVtoH();
-    //                break;
-
-    //            case Target.TargetEffect.ChangeTilemapHToV:
-    //                target.ChangeTilemapHtoV();
-    //                break;
-
-    //            case Target.TargetEffect.ChangeTilemapHToH:
-    //                target.ChangeTilemapHtoH();
-    //                break;
-
-    //            case Target.TargetEffect.UnlockBottle:
-    //                target.UnlockBottle();
-    //                break;
-    //        }
-
-    //        Destroy(gameObject);
-    //        Destroy(collision.gameObject);
-    //    }
-    //    else if (collision.tag != "Player")
-    //        Destroy(gameObject);
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+            Destroy(gameObject);
+    }
 }
