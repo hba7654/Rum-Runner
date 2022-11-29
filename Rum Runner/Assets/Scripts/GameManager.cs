@@ -40,11 +40,11 @@ public class GameManager : MonoBehaviour
         if (!isPaused && hasStarted)
         {
             timer += Time.deltaTime;
-            timeText.text = ("Time: " + timer.ToString("F2") + "s");
-            scoreText.text = ("<sprite=0>x" + rumBottles.ToString() + "/" + requiredScore.ToString());
 
         }
         pauseScreen.SetActive(isPaused);
+        timeText.text = ("Time: " + timer.ToString("F2") + "s");
+        scoreText.text = ("<sprite=0>x" + rumBottles.ToString() + "/" + requiredScore.ToString());
 
     }
 
@@ -70,18 +70,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static void Die()
+    public void Die()
     {
         switch (level)
         {
             case 1:
-                Level1Manager.Die();
+                GetComponent<Level1Manager>().Die();
                 break;
             case 2:
-                Level2Manager.Die();
+                GetComponent<Level2Manager>().Die();
                 break;
             case 3:
-                Level3Manager.Die();
+                GetComponent<Level3Manager>().Die();
                 break;
         }
     }
