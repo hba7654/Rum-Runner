@@ -3833,6 +3833,10 @@ PrefabInstance:
       propertyPath: dartSpeed
       value: 19
       objectReference: {fileID: 0}
+    - target: {fileID: 2785037173334836294, guid: 2b4c15a5fdb37934bb94b2cec701ab45, type: 3}
+      propertyPath: isFacingRight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2785037173334836295, guid: 2b4c15a5fdb37934bb94b2cec701ab45, type: 3}
       propertyPath: m_Name
       value: Dart Trap (1)
@@ -4345,6 +4349,10 @@ PrefabInstance:
     - target: {fileID: 2785037173334836294, guid: 2b4c15a5fdb37934bb94b2cec701ab45, type: 3}
       propertyPath: dartSpeed
       value: 19.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785037173334836294, guid: 2b4c15a5fdb37934bb94b2cec701ab45, type: 3}
+      propertyPath: isFacingRight
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2785037173334836295, guid: 2b4c15a5fdb37934bb94b2cec701ab45, type: 3}
       propertyPath: m_Name

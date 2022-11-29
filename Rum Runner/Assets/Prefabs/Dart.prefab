@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2361702666328983447}
   - component: {fileID: 2361702666328983445}
   - component: {fileID: 2361702666328983444}
-  - component: {fileID: 2361702666328983443}
+  - component: {fileID: 4454533534656453854}
   m_Layer: 0
   m_Name: Dart
   m_TagString: Spikes
@@ -124,7 +124,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &2361702666328983443
+--- !u!114 &4454533534656453854
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,6 +133,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2361702666328983528}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1223cbbffa9c6304c9bd95ad4698bf40, type: 3}
+  m_Script: {fileID: 11500000, guid: 4140b548c54a2a6489e427bd732154ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
