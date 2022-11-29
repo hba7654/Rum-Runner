@@ -132,8 +132,9 @@ public class PlayerUtility : MonoBehaviour
             //Controller Controls
             else if (context.control.displayName == "Right Stick")
             {
-                Debug.Log("Direction: " + mouseDirVector);
                 mouseDirVector = context.ReadValue<Vector2>();
+                mouseDirVector.x = Mathf.Round(mouseDirVector.x * 50) / 50;
+                mouseDirVector.y = Mathf.Round(mouseDirVector.y * 50) / 50;
 
                 isAiming = true;
                 usingMouse = false;
