@@ -173,6 +173,7 @@ public class PlayerUtility : MonoBehaviour
             if (context.started)
             {
                 isGrappling = true;
+                pMoveScript.isMoving = false;
             }
             
             //On input end, reset all variables to do with grapple

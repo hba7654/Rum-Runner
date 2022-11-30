@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     [SerializeField] float coyoteTime;
     private float coyoteTimeLeft;
-    private bool isMoving;
+    public bool isMoving;
     public bool isGrappling;
 
     [Header("Ground Check")]
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && !isGrappling)
         {
             playerSound.PlaySound("run");
             isMoving = true;
@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if(context.performed && !GameManager.isPaused)
+        if(context.started && !GameManager.isPaused)
         {
             
             if (canJump)
@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
             }
             
         }
-        else if(context.canceled && !isGrounded)
+        if(context.canceled && !isGrounded)
         {
             rb.gravityScale = fallingGravity;
         }
