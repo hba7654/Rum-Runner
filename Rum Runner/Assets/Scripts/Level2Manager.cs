@@ -19,6 +19,7 @@ public class Level2Manager : MonoBehaviour
     [SerializeField] GameObject exit;
     [SerializeField] private int requiredScore;
     [SerializeField] private GameObject[] bottles;
+    [SerializeField] private GameObject[] targets;
     [SerializeField] GameObject pistol;
 
     public int levelScore;
@@ -77,6 +78,15 @@ public class Level2Manager : MonoBehaviour
 
         player.hasPistol = false;
         pistol.SetActive(true);
+
+        for(int i = 0; i < targets.Length; i++)
+        {
+            if (!targets[i].activeInHierarchy)
+            {
+                targets[i].SetActive(true);
+                targets[i].GetComponent<Target>().ResetTarget();
+            }
+        }
     }
 
     public static void Win()

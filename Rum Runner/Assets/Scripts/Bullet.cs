@@ -62,7 +62,7 @@ public class Bullet : MonoBehaviour
                     break;
 
                 case Target.TargetEffect.ChangeTilemapHToH:
-                    target.ChangeTilemapHtoH();
+                    target.ChangeTilemapHtoH(false);
                     break;
 
                 case Target.TargetEffect.UnlockBottle:
@@ -71,7 +71,7 @@ public class Bullet : MonoBehaviour
             }
 
             Destroy(gameObject);
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
         else if(collision.tag != "Player")
             Destroy(gameObject);

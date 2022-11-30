@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static UnityEngine.GraphicsBuffer;
 
 public class Target : MonoBehaviour
 {
@@ -121,42 +122,82 @@ public class Target : MonoBehaviour
         }
     }
 
-    public void ChangeTilemapHtoH()
+    public void ChangeTilemapHtoH(bool isResetting)
     {
         Debug.Log("changing tiles h to h");
         //Delete first set of tiles
-        if (lengthToBeDeleted < 0)
+        if (!isResetting)
         {
-            for (int i = 0; i > lengthToBeDeleted; i--)
+            if (lengthToBeDeleted < 0)
             {
-                Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
-                tilemap.SetTile(addTilePos, null);
+                for (int i = 0; i > lengthToBeDeleted; i--)
+                {
+                    Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
+                    tilemap.SetTile(addTilePos, null);
+                }
             }
-        }
-        else
-        {
-            for (int i = 0; i < lengthToBeDeleted; i++)
+            else
             {
-                Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
-                tilemap.SetTile(addTilePos, null);
+                for (int i = 0; i < lengthToBeDeleted; i++)
+                {
+                    Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
+                    tilemap.SetTile(addTilePos, null);
+                }
             }
-        }
 
-        //Add new set of tiles
-        if (lengthToBeAdded < 0)
-        {
-            for (int i = 0; i > lengthToBeAdded; i--)
+            //Add new set of tiles
+            if (lengthToBeAdded < 0)
             {
-                Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
-                tilemap.SetTile(addTilePos, tile);
+                for (int i = 0; i > lengthToBeAdded; i--)
+                {
+                    Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
+                    tilemap.SetTile(addTilePos, tile);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < lengthToBeAdded; i++)
+                {
+                    Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
+                    tilemap.SetTile(addTilePos, tile);
+                }
             }
         }
         else
         {
-            for (int i = 0; i < lengthToBeAdded; i++)
+            if (lengthToBeAdded < 0)
             {
-                Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
-                tilemap.SetTile(addTilePos, tile);
+                for (int i = 0; i > lengthToBeAdded; i--)
+                {
+                    Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
+                    tilemap.SetTile(addTilePos, null);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < lengthToBeAdded; i++)
+                {
+                    Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
+                    tilemap.SetTile(addTilePos, null);
+                }
+            }
+
+            //Add new set of tiles
+            if (lengthToBeDeleted < 0)
+            {
+                for (int i = 0; i > lengthToBeDeleted; i--)
+                {
+                    Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
+                    tilemap.SetTile(addTilePos, tile);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < lengthToBeDeleted; i++)
+                {
+                    Vector3Int addTilePos = new Vector3Int(tilemapStartPos.x + i, tilemapStartPos.y, 0);
+                    tilemap.SetTile(addTilePos, tile);
+                }
             }
         }
     }
@@ -164,5 +205,24 @@ public class Target : MonoBehaviour
     public void UnlockBottle()
     {
         bottle.SetActive(true);
+    }
+
+    public void ResetTarget()
+    {
+        switch (effect)
+        {
+
+            case TargetEffect.ChangeTilemapVToH:
+                ChangeTilemapHtoV();
+                break;
+
+            case TargetEffect.ChangeTilemapHToV:
+                ChangeTilemapVtoH();
+                break;
+
+            case TargetEffect.ChangeTilemapHToH:
+                ChangeTilemapHtoH(true);
+                break;
+        }
     }
 }
