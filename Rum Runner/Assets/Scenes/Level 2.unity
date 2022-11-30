@@ -1313,6 +1313,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab230b4d345a3e94eb72c0b83df5e8a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &967922801 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 178799820014150428, guid: 0c1a4581d8112034e8a2f81c5ff18cda, type: 3}
+  m_PrefabInstance: {fileID: 1529762421}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &985141200 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5844934315634136263, guid: fb925b3f1e8f3e5479bd4fda490e3d2a, type: 3}
@@ -1668,7 +1673,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 178799820014150425, guid: 0c1a4581d8112034e8a2f81c5ff18cda, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 178799820014150425, guid: 0c1a4581d8112034e8a2f81c5ff18cda, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1752,6 +1757,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c1a4581d8112034e8a2f81c5ff18cda, type: 3}
+--- !u!1 &1227433462 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 178799820014150428, guid: 0c1a4581d8112034e8a2f81c5ff18cda, type: 3}
+  m_PrefabInstance: {fileID: 1222897537}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1238529216
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4311,6 +4321,9 @@ MonoBehaviour:
   - {fileID: 1764536906}
   - {fileID: 89584969}
   - {fileID: 1050469586}
+  targets:
+  - {fileID: 967922801}
+  - {fileID: 1227433462}
   pistol: {fileID: 333270267}
   levelScore: 0
 --- !u!1001 &1529762421
@@ -4322,7 +4335,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 178799820014150425, guid: 0c1a4581d8112034e8a2f81c5ff18cda, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 178799820014150425, guid: 0c1a4581d8112034e8a2f81c5ff18cda, type: 3}
       propertyPath: m_LocalPosition.x
