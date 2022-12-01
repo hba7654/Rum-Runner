@@ -12,6 +12,7 @@ TagManager:
   - Pistol
   - Target
   - Grapple
+  - Dart
   layers:
   - Default
   - TransparentFX

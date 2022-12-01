@@ -33,10 +33,10 @@ public class SoundManager : MonoBehaviour
                 break;
             case "die":
                 Debug.Log("DIE");
-                audioSource.PlayOneShot(dies[Random.Range(0, dies.Length)]);
+                audioSource.PlayOneShot(dies[Random.Range(0, dies.Length)], 0.24f);
                 break;
             case "dart":
-                audioSource.PlayOneShot(darts[Random.Range(0, darts.Length)]);
+                audioSource.PlayOneShot(darts[Random.Range(0, darts.Length)], 0.24f);
                 break;
             case "bottle":
                 Debug.Log("BOTTLE");

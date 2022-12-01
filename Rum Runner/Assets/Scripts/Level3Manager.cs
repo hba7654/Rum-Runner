@@ -65,6 +65,15 @@ public class Level3Manager : MonoBehaviour
 
     public void Die()
     {
+        GameObject[] darts = GameObject.FindGameObjectsWithTag("Dart");
+        if (darts.Length > 0)
+        {
+            for (int i = 0; i < darts.Length; i++)
+            {
+                Destroy(darts[i]);
+            }
+        }
+
         player.transform.position = startPos;
         GameManager.timer = 0;
         for(int i = 0; i < bottles.Length; i++)
@@ -78,6 +87,7 @@ public class Level3Manager : MonoBehaviour
 
         player.hasGrapple = false;
         grapple.SetActive(true);
+
     }
 
     public static void Win()

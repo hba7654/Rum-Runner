@@ -46,7 +46,7 @@ public class PlayerCollision : MonoBehaviour
 
             playerSound.PlaySound("bottle");
         }
-        else if(other.tag == "Spikes")
+        else if(other.tag == "Spikes" || other.tag == "Dart")
         {
             playerSound.PlaySound("die");
             Debug.Log("HIT SPIKES");
