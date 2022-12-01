@@ -1,4 +1,4 @@
-using System.Collections;
+  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private PlayerManager playerManager;
+    private Animator animator;
 
     [Header("Movement Variables")]
     public Rigidbody2D rb;
@@ -31,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         playerManager = gameObject.GetComponent<PlayerManager>();
-
+        animator = gameObject.GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         normalGravity = rb.gravityScale;
     }
@@ -57,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
         {
             moveVector = context.ReadValue<Vector2>();
         }
+        
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -133,6 +135,8 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = jumpingGravity;
         }
+        animator.SetBool("isGrounded", isGrounded);
+        animator.SetBool("moving", isMoving);
     }
 
     private void FixedUpdate()
