@@ -16,7 +16,6 @@ public class PlayerCollision : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Shoes"))
         {
-            Debug.Log("collide w Shoes");
             playerManager.hasShoes = true;
             other.gameObject.SetActive(false);
 
@@ -24,7 +23,6 @@ public class PlayerCollision : MonoBehaviour
         }
         else if (other.tag == "Pistol")
         {
-            Debug.Log("Pistol picked up!");
             other.gameObject.SetActive(false);
             playerManager.hasPistol = true;
 
@@ -32,7 +30,6 @@ public class PlayerCollision : MonoBehaviour
         }
         else if (other.tag == "Grapple")
         {
-            Debug.Log("Grappling hook picked up!");
             other.gameObject.SetActive(false);
             playerManager.hasGrapple = true;
 
@@ -40,7 +37,6 @@ public class PlayerCollision : MonoBehaviour
         }
         else if (other.tag == "Collectable")
         {
-            Debug.Log("Collectable picked up!");
             other.gameObject.SetActive(false);
             GameManager.rumBottles++;
 
@@ -49,19 +45,16 @@ public class PlayerCollision : MonoBehaviour
         else if(other.tag == "Spikes" || other.tag == "Dart")
         {
             playerSound.PlaySound("die");
-            Debug.Log("HIT SPIKES");
             gameManager.Die();
 
         }
         else if (other.tag == "Exit")
         {
-            Debug.Log("WIN!");
             GameManager.Win();
         }
         else if (other.tag == "Trigger")
         {
             playerSound.PlaySound("dart");
-            Debug.Log("Shoot dart!");
             other.transform.parent.GetComponent<DartTrap>().isTriggered = true;
         }
     }

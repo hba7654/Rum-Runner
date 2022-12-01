@@ -31,14 +31,12 @@ public class Bullet : MonoBehaviour
         if (transform.position.x > initialPos.x + cleanupCutX || transform.position.x < initialPos.x - cleanupCutX
             || transform.position.y > initialPos.y + cleanupCutY || transform.position.y < initialPos.y - cleanupCutX)
         {
-            Debug.Log("Destroying this object");
             Destroy(gameObject);
         }
     }
 
     public void InitialMove(float bSpeed, Vector2 initalVelocity)
     {
-        Debug.Log("Intial Move has been called"+ initalVelocity);
         initialPos = transform.position;
         currentVelocity = initalVelocity;
         bulletSpeed = bSpeed;
@@ -50,7 +48,6 @@ public class Bullet : MonoBehaviour
         if (collision.tag == "Target")
         {
             Target target = collision.GetComponent<Target>();
-            Debug.Log("Target HIT!");
             switch (target.effect)
             {
                 case Target.TargetEffect.ChangeTilemapVToH:

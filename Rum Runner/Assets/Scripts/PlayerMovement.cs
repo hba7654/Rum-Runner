@@ -139,7 +139,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!GameManager.isPaused)
         {
-            Debug.Log(moveVector);
             if(isGrappling)
                 rb.velocity = new Vector2(moveVector.x * moveSpeed, moveVector.y * moveSpeed);
             else
