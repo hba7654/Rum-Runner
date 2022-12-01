@@ -159,7 +159,11 @@ public class PlayerUtility : MonoBehaviour
         {
             soundManager.PlaySound("shoot");
             GameObject bulletClone;
-            Vector2 bulletSpawnPosition = new Vector2(transform.position.x + 0.5f, transform.position.y);
+            Vector2 bulletSpawnPosition;
+            if (playerManager.isFacingRight)
+                bulletSpawnPosition = new Vector2(transform.position.x + 0.5f, transform.position.y);
+            else
+                bulletSpawnPosition = new Vector2(transform.position.x - 0.5f, transform.position.y);
             bulletClone = Instantiate(bullet, bulletSpawnPosition, transform.rotation);
             bulletScript = bulletClone.GetComponent<Bullet>();
             bulletScript.InitialMove(bulletSpeed, mouseDirVector);
