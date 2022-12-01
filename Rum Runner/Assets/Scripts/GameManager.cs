@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,9 +15,9 @@ public class GameManager : MonoBehaviour
     public static int level;
 
     public static float timer;
-    [SerializeField] Text timeText;
-    [SerializeField] Text scoreText;
-    [SerializeField] Text fastestTimeText;
+    [SerializeField] TMP_Text timeText;
+    [SerializeField] TMP_Text scoreText;
+    [SerializeField] TMP_Text fastestTimeText;
 
 
     public static bool isPaused;
@@ -35,22 +36,21 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fastestTimeText.text = ("Fastest Time: " + totalFastestTime.ToString("F2") + "s");
+        fastestTimeText.text = ("<sprite=0> " + totalFastestTime.ToString("F2") + "s");
         if (!isPaused && hasStarted)
         {
             timer += Time.deltaTime;
-            timeText.text = ("Time: " + timer.ToString("F2") + "s");
-            scoreText.text = ("Bottles Collected: " + rumBottles.ToString() + "/" + requiredScore.ToString());
 
         }
         pauseScreen.SetActive(isPaused);
+        timeText.text = ("Time: " + timer.ToString("F2") + "s");
+        scoreText.text = ("<sprite=0> x" + rumBottles.ToString() + "/" + requiredScore.ToString());
 
     }
 
     public static void Pause()
     {
         isPaused = !isPaused;
-        Debug.Log("PAUSED");
     }
 
     public static void Win()
@@ -69,18 +69,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static void Die()
+    public void Die()
     {
         switch (level)
         {
             case 1:
-                Level1Manager.Die();
+                GetComponent<Level1Manager>().Die();
                 break;
             case 2:
-                Level2Manager.Die();
+                GetComponent<Level2Manager>().Die();
                 break;
             case 3:
-                Level3Manager.Die();
+                GetComponent<Level3Manager>().Die();
                 break;
         }
     }

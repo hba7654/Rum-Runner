@@ -17,8 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     [SerializeField] float coyoteTime;
     private float coyoteTimeLeft;
-    [SerializeField] bool isFacingRight;
-    private bool hasMoved;
+    public bool isMoving;
     public bool isGrappling;
 
     [Header("Ground Check")]
@@ -26,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundSpot;
     public LayerMask groundLayer;
 
-
+    public SoundManager playerSound;
     private float normalGravity;
 
     private void Awake()
@@ -35,30 +34,41 @@ public class PlayerMovement : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         normalGravity = rb.gravityScale;
-        isFacingRight = true;
-        hasMoved = false;
     }
 
     public void Move(InputAction.CallbackContext context)
     {
-        if(!hasMoved)
+        if (context.started && !isGrappling)
         {
-            hasMoved = true;
-            GameManager.hasStarted = true;
+            playerSound.PlaySound("run");
+            isMoving = true;
         }
-        if(!isGrappling)
+        else if (context.canceled)
+        {
+            playerSound.StopSound("run");
+            isMoving = false;
+        }
+        if (!GameManager.hasStarted)
+        {
+            GameManager.hasStarted = true;
+            moveVector = Vector2.zero;
+        }
+        if (!isGrappling)
+        {
             moveVector = context.ReadValue<Vector2>();
+        }
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if(context.performed && !GameManager.isPaused)
+        if(context.started && !GameManager.isPaused)
         {
             
             if (canJump)
             {
                 rb.gravityScale = jumpingGravity;
                 rb.velocity = new Vector2(rb.velocity.x, jumpDistance);
+                playerSound.PlaySound("jump");
             }
             else if (!canJump && playerManager.hasShoes)
             {
@@ -67,11 +77,12 @@ public class PlayerMovement : MonoBehaviour
                     rb.gravityScale = jumpingGravity;
                     rb.velocity = new Vector2(rb.velocity.x, jumpDistance);
                     playerManager.usedDoubleJump =true;
+                    playerSound.PlaySound("jump");
                 }
             }
             
         }
-        else if(context.canceled && !isGrounded)
+        if(context.canceled && !isGrounded)
         {
             rb.gravityScale = fallingGravity;
         }
@@ -82,6 +93,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!GameManager.isPaused)
         {
+            if(!isMoving && !isGrappling && isGrounded)
+            {
+                moveVector = Vector2.zero;
+            }
+
             isGrounded = Physics2D.OverlapCircle(groundSpot.position, 0.1f, groundLayer);
             if (isGrounded)
             {
@@ -97,6 +113,14 @@ public class PlayerMovement : MonoBehaviour
                     coyoteTimeLeft = 0;
                     canJump = false;
                 }
+            }
+            if(moveVector.x > 0)
+            {
+                playerManager.isFacingRight = true;
+            }
+            else if(moveVector.x < 0)
+            {
+                playerManager.isFacingRight= false;
             }
         }
 

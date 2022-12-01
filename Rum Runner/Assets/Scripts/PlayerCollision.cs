@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour
 {
     private PlayerManager playerManager;
+    public SoundManager playerSound;
+    public GameManager gameManager;
 
     private void Start()
     {
@@ -14,35 +16,45 @@ public class PlayerCollision : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Shoes"))
         {
-            Debug.Log("collide w Shoes");
             playerManager.hasShoes = true;
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
+
+            playerSound.PlaySound("pickup");
         }
         else if (other.tag == "Pistol")
         {
-            Debug.Log("Pistol picked up!");
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
             playerManager.hasPistol = true;
+
+            playerSound.PlaySound("pickup");
+        }
+        else if (other.tag == "Grapple")
+        {
+            other.gameObject.SetActive(false);
+            playerManager.hasGrapple = true;
+
+            playerSound.PlaySound("pickup");
         }
         else if (other.tag == "Collectable")
         {
-            Debug.Log("Collectable picked up!");
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
             GameManager.rumBottles++;
+
+            playerSound.PlaySound("bottle");
         }
-        else if(other.tag == "Spikes")
+        else if(other.tag == "Spikes" || other.tag == "Dart")
         {
-            Debug.Log("HIT SPIKES");
-            GameManager.Die();
+            playerSound.PlaySound("die");
+            gameManager.Die();
+
         }
         else if (other.tag == "Exit")
         {
-            Debug.Log("WIN!");
             GameManager.Win();
         }
         else if (other.tag == "Trigger")
         {
-            Debug.Log("Shoot dart!");
+            playerSound.PlaySound("dart");
             other.transform.parent.GetComponent<DartTrap>().isTriggered = true;
         }
     }

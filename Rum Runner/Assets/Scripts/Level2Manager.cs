@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Level2Manager : MonoBehaviour
 {
+    public Vector2 startPos;
     public static float finalTime;
     public static float fastestTime;
     public static int finalRumBottles;
@@ -14,13 +15,24 @@ public class Level2Manager : MonoBehaviour
     private float startingFastestTime;
     private int startingScore;
 
+    [SerializeField] PlayerManager player;
     [SerializeField] GameObject exit;
     [SerializeField] private int requiredScore;
+    [SerializeField] private GameObject[] bottles;
+    [SerializeField] private GameObject[] targets;
+    [SerializeField] GameObject pistol;
 
     public int levelScore;
     // Start is called before the first frame update
     void Start()
     {
+        Init();
+    }
+
+    void Init()
+    {
+        startPos = player.transform.position;
+
         levelScore = 0;
         exit.SetActive(false);
         GameManager.level = 2;
@@ -39,7 +51,6 @@ public class Level2Manager : MonoBehaviour
         GameManager.requiredScore = requiredScore;
 
         GameManager.totalFastestTime = fastestTime;
-
     }
 
     // Update is called once per frame
@@ -52,16 +63,43 @@ public class Level2Manager : MonoBehaviour
         }
     }
 
-    public static void Die()
+    public void Die()
     {
-        SceneManager.LoadScene("Level 2");
+        player.transform.position = startPos;
+        GameManager.timer = 0;
+        for (int i = 0; i < bottles.Length; i++)
+        {
+            bottles[i].SetActive(true);
+        }
+        GameManager.isPaused = false;
+        GameManager.hasStarted = false;
+        GameManager.rumBottles = 0;
+        Init();
+
+        player.hasPistol = false;
+        pistol.SetActive(true);
+
+        for(int i = 0; i < targets.Length; i++)
+        {
+            if (!targets[i].activeInHierarchy)
+            {
+                targets[i].SetActive(true);
+                targets[i].GetComponent<Target>().ResetTarget();
+            }
+        }
     }
 
     public static void Win()
     {
+        var L2 = new Level2Manager();
+
         finalTime = GameManager.timer;
         finalRumBottles = GameManager.rumBottles;
 
+        if (finalRumBottles > L2.requiredScore)
+        {
+            finalTime += (float).5 * (L2.requiredScore - finalRumBottles);
+        }
 
 
         if (finalTime <= fastestTime)
