@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!21 &-8268605596962604928
+--- !u!21 &-1846719242095368973
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 1
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: fastest-time-flag
   m_EditorClassIdentifier: 
   hashCode: 1733267131
-  material: {fileID: -8268605596962604928}
+  material: {fileID: -1846719242095368973}
   materialHashCode: 0
   m_Version: 1.1.0
   m_FaceInfo:
@@ -89,7 +89,7 @@ MonoBehaviour:
       m_Width: 64
       m_Height: 64
       m_HorizontalBearingX: 2
-      m_HorizontalBearingY: 58
+      m_HorizontalBearingY: 57
       m_HorizontalAdvance: 64
     m_GlyphRect:
       m_X: 0
