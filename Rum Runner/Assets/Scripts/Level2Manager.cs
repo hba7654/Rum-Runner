@@ -91,9 +91,15 @@ public class Level2Manager : MonoBehaviour
 
     public static void Win()
     {
+        var L2 = new Level2Manager();
+
         finalTime = GameManager.timer;
         finalRumBottles = GameManager.rumBottles;
 
+        if (finalRumBottles > L2.requiredScore)
+        {
+            finalTime += (float).5 * (L2.requiredScore - finalRumBottles);
+        }
 
 
         if (finalTime <= fastestTime)

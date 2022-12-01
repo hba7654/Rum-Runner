@@ -82,9 +82,15 @@ public class Level3Manager : MonoBehaviour
 
     public static void Win()
     {
+        var L3 = new Level3Manager();
+
         finalTime = GameManager.timer;
         finalRumBottles = GameManager.rumBottles;
 
+        if (finalRumBottles > L3.requiredScore)
+        {
+            finalTime += (float).5 * (L3.requiredScore - finalRumBottles);
+        }
 
 
         if (finalTime <= fastestTime)
