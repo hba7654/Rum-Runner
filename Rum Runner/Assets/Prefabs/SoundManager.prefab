@@ -188,6 +188,7 @@ MonoBehaviour:
   bottle: {fileID: 8300000, guid: ba2d4e426887f0746910bf33072ba404, type: 3}
   pickup: {fileID: 8300000, guid: c76f44eb54992c44883385863d6b94ef, type: 3}
   shoot: {fileID: 8300000, guid: 11aa92e5c3e97f54680c43d6bbd2e64f, type: 3}
+  grapple: {fileID: 8300000, guid: 4341f47abb92b8c41884b934f496e0dd, type: 3}
   music: {fileID: 743575643120850162}
 --- !u!82 &2092906367673941674
 AudioSource:

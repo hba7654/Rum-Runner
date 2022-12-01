@@ -37,6 +37,8 @@ public class PlayerUtility : MonoBehaviour
         crosshair = playerManager.transform.GetChild(1).gameObject;
 
         lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.startColor = Color.black;
+        lineRenderer.endColor = Color.black;
         pMoveScript = GetComponent<PlayerMovement>();
 
         isAiming = false;
@@ -86,6 +88,7 @@ public class PlayerUtility : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, mouseDirVector, grappleLength, pMoveScript.groundLayer);
                 if (hit.collider != null)
                 {
+                    soundManager.PlaySound("grapple");
                     mousePosition = hit.point;
                     allowGrappling = true;
                     pMoveScript.isGrappling = true;

@@ -13,6 +13,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip bottle;
     [SerializeField] AudioClip pickup;
     [SerializeField] AudioClip shoot;
+    [SerializeField] AudioClip grapple;
     [SerializeField] AudioSource music;
     // Start is called before the first frame update
     void Start()
@@ -56,6 +57,9 @@ public class SoundManager : MonoBehaviour
                 break;
             case "shoot":
                 audioSource.PlayOneShot(shoot);
+                break;
+            case "grapple":
+                audioSource.PlayOneShot(grapple);
                 break;
         }
     }
